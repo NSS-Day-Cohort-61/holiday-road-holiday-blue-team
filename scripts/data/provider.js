@@ -1,5 +1,7 @@
 import apiKeys from "../Settings.js"
 
+
+
 const applicationState = {
   itineraries: [],
   parks: [],
@@ -12,7 +14,7 @@ export const fetchParks = () => {
     .then(response => response.json())
     .then(
         (servicePosts) => {
-            // Store the external state in application state
+          
             applicationState.parks = servicePosts
         }
         )
@@ -27,7 +29,7 @@ export const fetchAttractions = () => {
     .then(response => response.json())
     .then(
         (servicePosts) => {
-            // Store the external state in application state
+            
             applicationState.attractions = servicePosts
         }
         )
@@ -42,7 +44,7 @@ export const fetchEateries = () => {
     .then(response => response.json())
     .then(
         (servicePosts) => {
-            // Store the external state in application state
+           
             applicationState.eateries = servicePosts
         }
         )
@@ -53,13 +55,13 @@ export const getEateries = () => {
 }
 
 export const fetchWeather = () => {
-    return fetch (`api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=${apiKeys.weatherKey}`)
-    .then(res => res.json())
-    .then(
-        (data) => {
-            applicationState.weather = data
-        }
-    )
+    // return fetch (`api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=${apiKeys.weatherKey}`)
+    // .then(res => res.json())
+    // .then(
+    //     (data) => {
+    //         applicationState.weather = data
+    //     }
+    // )
 }
 
 export const getWeather = () => {
