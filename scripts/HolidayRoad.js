@@ -1,4 +1,4 @@
-
+import { Parks } from "./parks/ParkProvider.js"
 
 export const HolidayRoad = () => {
     return `
@@ -6,7 +6,7 @@ export const HolidayRoad = () => {
     
       <div class="dropdownBoxes">
         <div class="parkDropdown dropdown">
-          <select><option> parks </option></select>
+          <select><option> ${Parks()} </option></select>
         </div>
   
         <div class="bizarreDropdown dropdown">
