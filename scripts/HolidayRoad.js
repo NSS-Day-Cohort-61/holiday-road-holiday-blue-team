@@ -1,3 +1,4 @@
+import { attractionList } from "./attractions/AttractionProvider.js"
 
 
 export const HolidayRoad = () => {
@@ -6,15 +7,18 @@ export const HolidayRoad = () => {
     
       <div class="dropdownBoxes">
         <div class="parkDropdown dropdown">
-          <select><option> parks </option></select>
+          <select><option> Select Park </option></select>
         </div>
   
         <div class="bizarreDropdown dropdown">
-          <select><option> bizarres </option></select>
+          <select>
+            <option> Select Attraction </option>
+            ${attractionList()}
+          </select> 
         </div>
   
         <div class="eateryDropdown dropdown">
-          <select><option> eateries </option></select>
+          <select><option> Select Eatery </option></select>
         </div>
       </div>
       
@@ -24,11 +28,11 @@ export const HolidayRoad = () => {
             <h3>Your Itinerary</h3>
             
             <div class="chosenPark chosen">Park</div>
-            <div class="chosenBizarre chosen">Bizarre </div>
+            <div class="chosenBizarre chosen">Attraction </div>
             <div class="chosenEatery chosen">Eatery</div>
         <div class="detailsDisplay"></div>
   
-          <button style="width:100px" class="saveButton">SAV3</button>
+          <button style="width:100px" class="saveButton">Save Itinerary</button>
           </div>
   
           <div class="weatherDisplay">
