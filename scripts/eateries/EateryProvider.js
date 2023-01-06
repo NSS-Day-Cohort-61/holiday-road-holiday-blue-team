@@ -7,11 +7,20 @@ document.addEventListener("change", changeEvent => {
 
     eateries.map(eatery => {
         if (changeEvent.target.value === `eatery__${eatery.id}`) {
-            document.querySelector(".chosenEatery").innerHTML = `${eatery.businessName}`
-
-            
+            document.querySelector(".chosenEatery").innerHTML = `${eatery.businessName}
+            <button style="width:100px" class="eateryDetails-${eatery.id}">Details</button>`
+            document.querySelector(".detailsDisplay").innerHTML = ""
         }
     }).join("")
+})
+document.addEventListener("click", clickEvent =>{
+    const eateries = getEateries()
+
+    eateries.map(eatery => {
+        if (clickEvent.target.className === `eateryDetails-${eatery.id}`) {
+            document.querySelector(".detailsDisplay").innerHTML = `${eatery.description}`
+        }
+    })
 })
 
 export const Eateries = () => {
