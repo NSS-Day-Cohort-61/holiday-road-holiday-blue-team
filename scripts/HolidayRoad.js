@@ -5,7 +5,7 @@ import { Eateries } from "./eateries/EateryProvider.js"
 
 export const HolidayRoad = () => {
     return `
-      <h2>Holiday Road</h2>
+    <div class="pageTitle">[ Holiday Road ]</div>
     
       <div class="dropdownBoxes">
         <div class="parkDropdown dropdown">
