@@ -50,6 +50,7 @@
 
 .weatherDisplay{
     border: 2px solid aquamarine;
+    
     display: flex;
     flex-direction: column;
     flex-grow: 1;

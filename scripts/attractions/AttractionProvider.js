@@ -42,6 +42,7 @@ document.addEventListener("click", (event) => {
             if (event.target.className === `bizDetails__${attract.id}`) {
                 document.querySelector(".detailsDisplay").innerHTML = ` ${attract.description}  `
                 
+                
             }
         }).join("")
     
