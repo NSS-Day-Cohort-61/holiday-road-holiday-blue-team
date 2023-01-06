@@ -33,8 +33,8 @@ export const HolidayRoad = () => {
             <h3>Your Itinerary</h3>
             
             <div class="chosenPark chosen">Park</div>
-            <div class="chosenBizarre chosen">Attraction </div>
-            <div class="chosenEatery chosen">Eatery</div>
+            <div class="chosenBizarre chosen"> Selected  Attraction </div>
+            <div class="chosenEatery chosen">Selected Eatery</div>
               
         <div class="detailsDisplay"></div>
   
