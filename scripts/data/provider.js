@@ -81,11 +81,19 @@ export const saveItinerary = (input) => {
         },
         body: JSON.stringify(input)
     }
-
-
+    const mainContainer = document.querySelector("#holidayRoad")
     return fetch(`http://localhost:8088/itineraries`, fetchOptions)
         .then(response => response.json())
-        .then((data) => {
-          applicationState.itineraries = data
+        .then(() => {
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
         })
+}
+export const fetchItinerary = () => {
+    return fetch(`http://localhost:8088/itineraries`)
+        .then(response => response.json())
+        .then(
+            (userItinerary) => {
+                applicationState.itineraries = userItinerary
+            }
+        )
 }
