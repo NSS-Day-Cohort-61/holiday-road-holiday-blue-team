@@ -13,7 +13,7 @@ document.addEventListener("change", changeEvent => {
         }
     }).join("")
 })
-document.addEventListener("click", clickEvent =>{
+document.addEventListener("click", clickEvent => {
     const eateries = getEateries()
 
     eateries.map(eatery => {
