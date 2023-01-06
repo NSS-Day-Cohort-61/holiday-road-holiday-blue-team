@@ -1,7 +1,28 @@
 import { attractionList } from "./attractions/AttractionProvider.js"
 import { Parks } from "./parks/ParkProvider.js"
 import { Eateries } from "./eateries/EateryProvider.js"
+import { saveItinerary } from "./data/provider.js"
 
+const mainContainer = document.querySelector("#holidayRoad")
+
+mainContainer.addEventListener("click", clickEvent => {
+  if (clickEvent.target.className === "saveButton") {
+      const selectedPark = document.querySelector("option[class='park']").value
+      const userAttraction = document.querySelector("select[name='attraction']").value
+      const [, selectedAttraction] = userAttraction.split("__")
+      const userEatery = document.querySelector("select[name='eatery']").value
+      const [, selectedEatery] = userEatery.split("__")
+      
+      
+      const sendToApi = {
+          parkId: selectedPark,
+          attractionId: parseInt(selectedAttraction),
+          eateryId: parseInt(selectedEatery)
+      }
+
+      saveItinerary(sendToApi)
+  }
+})
 
 export const HolidayRoad = () => {
     return `
@@ -16,7 +37,7 @@ export const HolidayRoad = () => {
         </div>
   
         <div class="bizarreDropdown dropdown">
-          <select>
+          <select  name="attraction">
             <option> Select Attraction </option>
             ${attractionList()}
           </select> 
