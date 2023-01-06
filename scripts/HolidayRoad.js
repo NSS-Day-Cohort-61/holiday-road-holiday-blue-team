@@ -1,3 +1,4 @@
+import { Eateries } from "./eateries/EateryProvider.js"
 
 
 export const HolidayRoad = () => {
@@ -14,7 +15,7 @@ export const HolidayRoad = () => {
         </div>
   
         <div class="eateryDropdown dropdown">
-          <select><option> eateries </option></select>
+          ${Eateries()}
         </div>
       </div>
       

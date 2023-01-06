@@ -1,4 +1,4 @@
-import apiKeys from "./Settings.js"
+import apiKeys from "../Settings.js"
 
 const applicationState = {
   itineraries: [],
