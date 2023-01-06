@@ -6,7 +6,7 @@ document.addEventListener("change", changeEvent => {
     const eateries = getEateries()
 
     eateries.map(eatery => {
-        if (parseInt(changeEvent.target.value) === eatery.id) {
+        if (changeEvent.target.value === `eatery__${eatery.id}`) {
             document.querySelector(".chosenEatery").innerHTML = `${eatery.businessName}`
 
             
@@ -23,7 +23,7 @@ export const Eateries = () => {
             `
 
     const arrayOfEateries = eateries.map(eatery => {
-        return `<option value="${eatery.id}">${eatery.businessName}</option>`
+        return `<option value="eatery__${eatery.id}">${eatery.businessName}</option>`
     })
 
     html += arrayOfEateries.join("")
