@@ -16,3 +16,16 @@ const attractions = getAttractions()
     `
 
 }
+
+
+document.addEventListener("change", (event) => {
+    const biz = getAttractions()
+    biz.map(
+        attract => {
+            if (parseInt(event.target.value) === attract.id) {
+                document.querySelector(".chosenBizarre").innerHTML = ` ${attract.name} `
+                
+            }
+        }).join("")
+    
+})
