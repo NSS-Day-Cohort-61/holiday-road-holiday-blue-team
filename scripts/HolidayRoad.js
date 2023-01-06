@@ -1,5 +1,7 @@
 import { attractionList } from "./attractions/AttractionProvider.js"
 import { Parks } from "./parks/ParkProvider.js"
+import { Eateries } from "./eateries/EateryProvider.js"
+
 
 export const HolidayRoad = () => {
     return `
@@ -21,7 +23,7 @@ export const HolidayRoad = () => {
         </div>
   
         <div class="eateryDropdown dropdown">
-          <select><option> Select Eatery </option></select>
+          ${Eateries()}
         </div>
       </div>
       
