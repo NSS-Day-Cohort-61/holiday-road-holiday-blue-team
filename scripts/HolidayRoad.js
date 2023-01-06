@@ -35,6 +35,7 @@ export const HolidayRoad = () => {
             <div class="chosenPark chosen">Park</div>
             <div class="chosenBizarre chosen">  </div>
             <div class="chosenEatery chosen">Eatery</div>
+              
         <div class="detailsDisplay"></div>
   
           <button style="width:100px" class="saveButton">Save Itinerary</button>
