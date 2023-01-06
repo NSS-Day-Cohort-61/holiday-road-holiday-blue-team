@@ -21,7 +21,7 @@ export const fetchParks = () => {
 }
 
 export const getParks = () => {
-    return applicationState.parks.map(park => ({...park}))
+    return applicationState.parks.data.map(park => ({...park}))
 }
 
 export const fetchAttractions = () => {

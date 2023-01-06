@@ -7,8 +7,10 @@ export const HolidayRoad = () => {
     
       <div class="dropdownBoxes">
         <div class="parkDropdown dropdown">
-          <select><option> Select Park </option>
-          <option> ${Parks()} </option></select>
+          <select>
+            <option> Select National Park </option> 
+            ${Parks()} 
+          </select>
         </div>
   
         <div class="bizarreDropdown dropdown">
