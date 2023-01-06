@@ -8,7 +8,9 @@ document.addEventListener("change", changeEvent => {
     eateries.map(eatery => {
         if (changeEvent.target.value === `eatery__${eatery.id}`) {
             document.querySelector(".chosenEatery").innerHTML = `${eatery.businessName}
-            <button style="width:100px" class="eateryDetails-${eatery.id}">Details</button>`
+            <br> ${eatery.city}, ${eatery.state}
+            <br><button style="width:100px" class="eateryDetails-${eatery.id}">Details</button>
+            `
             document.querySelector(".detailsDisplay").innerHTML = ""
         }
     }).join("")

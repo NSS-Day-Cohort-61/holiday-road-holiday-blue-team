@@ -1,4 +1,6 @@
-import { getParks } from "../data/provider.js";
+import { fetchWeather, getParks } from "../data/provider.js";
+import { displayWeather } from "../weather/WeatherProvider.js";
+
 
 
 export const Parks = () => {
@@ -18,24 +20,28 @@ document.addEventListener(
         for (const park of parks) {
             if (event.target.value === park.id) {
                 document.querySelector(".chosenPark").innerHTML = `${park.fullName} 
-                <button style="width:100px" class="parkDetailsButton__${park.id}">Details</button> <br> ${park.addresses[0].city}, ${park.addresses[0].stateCode}`
+                 <br> ${park.addresses[0].city}, ${park.addresses[0].stateCode}
+                 <br><button style="width:100px" class="parkDetailsButton__${park.id}">Details</button>`
             
                 document.querySelector(".detailsDisplay").innerHTML = ""
+                
+                document.querySelector(".trueWeatherDisplay").innerHTML = displayWeather(Promise.resolve(fetchWeather(park)))
             }
         }
         
     }
     )
     
-    document.addEventListener(
-        "click",
-        clickEvent => {
-            const parks = getParks()
-            for (const park of parks) {
-                if (clickEvent.target.className === `parkDetailsButton__${park.id}`) {
-                    document.querySelector(".detailsDisplay").innerHTML = `${park.description}`
-                }
+document.addEventListener(
+    "click",
+    clickEvent => {
+        const parks = getParks()
+        for (const park of parks) {
+            if (clickEvent.target.className === `parkDetailsButton__${park.id}`) {
+                document.querySelector(".detailsDisplay").innerHTML = `${park.description}`
             }
-            
         }
-        )   
+        
+    }
+    )   
+

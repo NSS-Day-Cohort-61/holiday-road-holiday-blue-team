@@ -1,4 +1,4 @@
-import { fetchAttractions, fetchEateries, fetchParks, fetchWeather } from "./data/provider.js"
+import { fetchAttractions, fetchEateries, fetchParks } from "./data/provider.js"
 import { HolidayRoad } from "./HolidayRoad.js"
 
 
@@ -8,7 +8,7 @@ export const renderApp = () => {
     fetchAttractions()
     .then(() => fetchEateries())
     .then(() => fetchParks())
-    .then(() => fetchWeather())
+   
     .then(
         () => {
             applicationElement.innerHTML = HolidayRoad()

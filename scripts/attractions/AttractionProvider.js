@@ -25,8 +25,9 @@ document.addEventListener("change", (event) => {
     biz.map(
         attract => {
             if (event.target.value === `biz__${attract.id}`) {
-                document.querySelector(".chosenBizarre").innerHTML = ` ${attract.name} \t<button style="width:100px" class="bizDetails__${attract.id}">Details</button> </div>
+                document.querySelector(".chosenBizarre").innerHTML = ` ${attract.name} 
                 <br> ${attract.city}, ${attract.state} 
+                <div> <button style="width:100px" class="bizDetails__${attract.id}">Details</button> </div>
                 `
                 document.querySelector(".detailsDisplay").innerHTML = ""
                 

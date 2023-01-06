@@ -1,6 +1,7 @@
 import { attractionList } from "./attractions/AttractionProvider.js"
 import { Parks } from "./parks/ParkProvider.js"
 import { Eateries } from "./eateries/EateryProvider.js"
+import { displayWeather } from "./weather/WeatherProvider.js"
 
 
 export const HolidayRoad = () => {
@@ -43,6 +44,7 @@ export const HolidayRoad = () => {
   
           <div class="weatherDisplay">
           <h3>Weather</h3>
+          <div class=trueWeatherDisplay></div>
           </div>
         </div>
   

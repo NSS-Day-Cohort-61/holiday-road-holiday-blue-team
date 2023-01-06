@@ -6,7 +6,8 @@ const applicationState = {
   itineraries: [],
   parks: [],
   attractions: [],
-  eateries:[]
+  eateries:[],
+  weather: []
 }
 
 export const fetchParks = () => {
@@ -54,19 +55,23 @@ export const getEateries = () => {
     return applicationState.eateries.map(eat => ({...eat}))
 }
 
-export const fetchWeather = () => {
-    // return fetch (`api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=${apiKeys.weatherKey}`)
-    // .then(res => res.json())
-    // .then(
-    //     (data) => {
-    //         applicationState.weather = data
-    //     }
-    // )
+export const fetchWeather = (parkObj) => {
+    
+    return fetch (`https://api.openweathermap.org/data/2.5/forecast?lat=${parkObj.latitude}&lon=${parkObj.longitude}&appid=${apiKeys.weatherKey}`)
+    .then(res => res.json())
+    .then(
+        (data) => {
+            applicationState.weather = data
+            // document.dispatchEvent(new CustomEvent("stateChanged"))
+        
+        }
+    ) 
+    
 }
 
-export const getWeather = () => {
-    return applicationState.weather.map(forecast => ({...forecast}))
-}
+// export const getWeather = () => {
+//     return applicationState.weather.map(forecast => ({...forecast}))
+// }
 
 export const saveItinerary = (input) => {
     const fetchOptions = {
