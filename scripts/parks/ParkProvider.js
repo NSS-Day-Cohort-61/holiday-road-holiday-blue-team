@@ -1,6 +1,4 @@
 import { fetchWeather, getParks } from "../data/provider.js";
-import { displayWeather } from "../weather/WeatherProvider.js";
-
 
 
 export const Parks = () => {
