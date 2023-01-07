@@ -1,4 +1,4 @@
-import { fetchAttractions, fetchEateries, fetchItinerary, fetchParks, fetchWeather } from "./data/provider.js"
+import { fetchAttractions, fetchEateries, fetchItinerary, fetchParks, fetchWeather, getWeather } from "./data/provider.js"
 import { HolidayRoad } from "./HolidayRoad.js"
 
 
@@ -24,5 +24,11 @@ applicationElement.addEventListener(
     "stateChanged",
     customEvent => {
         renderApp()
+    }
+)
+applicationElement.addEventListener(
+    "newFetch",
+    customEvent => {
+       getWeather()
     }
 )

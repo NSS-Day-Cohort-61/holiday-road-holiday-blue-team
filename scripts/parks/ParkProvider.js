@@ -24,8 +24,9 @@ document.addEventListener(
                  <br><button style="width:100px" class="parkDetailsButton__${park.id}">Details</button>`
             
                 document.querySelector(".detailsDisplay").innerHTML = ""
+                document.querySelector(".trueWeatherDisplay").innerHTML = ""
                 
-                document.querySelector(".trueWeatherDisplay").innerHTML = displayWeather(Promise.resolve(fetchWeather(park)))
+                fetchWeather(park)
             }
         }
         

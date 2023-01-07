@@ -64,6 +64,16 @@
     padding: 5px;
 }
 
+.trueWeatherDisplay{
+    border: 2px solid rgb(153, 156, 155);
+    /* line-height: 40px; */
+    text-align: center;
+    display: flex;
+    flex-flow: column wrap;
+    flex-grow: 1;
+    padding: 5px;
+}
+
 .savedOptions{
     border: 2px solid palevioletred;
     display: flex;

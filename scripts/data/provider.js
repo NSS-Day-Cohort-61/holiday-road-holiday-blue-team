@@ -62,16 +62,31 @@ export const fetchWeather = (parkObj) => {
     .then(
         (data) => {
             applicationState.weather = data
-            // document.dispatchEvent(new CustomEvent("stateChanged"))
-        
-        }
-    ) 
-    
-}
+                const fiveDayIndex = [data.list[0], data.list[1],data.list[9], data.list[17],data.list[25]]
+                for (const forecast of fiveDayIndex){
+                    document.querySelector(".trueWeatherDisplay").innerHTML += `
+                        <li> 
+                        ${
+                            new Date(forecast.dt_txt)
+                        }
+                        <br>
+                        high temp of
+                        ${
+                            Math.floor(1.8 * (forecast.main.temp - 273.15) + 32)
+                        } F
+                        <br>
+                        ${forecast.weather[0].description}
+                        <br>
+                        <br>
+                        `
+                }
+             
+})}
 
-// export const getWeather = () => {
-//     return applicationState.weather.map(forecast => ({...forecast}))
-// }
+
+export const getWeather = () => {
+    return applicationState.weather.map(forecast => ({...forecast}))
+}
 
 export const saveItinerary = (input) => {
     const fetchOptions = {
