@@ -50,23 +50,24 @@ export const HolidayRoad = () => {
       <div class="mainContent">
         <div class="chosenOptions">
           <div class="optionsDisplay" id="optionOption">
-            <h3>Your Itinerary</h3>
+            <h2>Your Itinerary</h2>
             
-            <div class="chosenPark chosen" id="parkPark">Selected Park
-            
-            </div>
+            <div class="chosenPark chosen" id="parkPark">Selected Park</div>
             <div class="chosenBizarre chosen" id=bizBiz> Selected  Attraction </div>
             <div class="chosenEatery chosen" id="eatEat">Selected Eatery</div>
             
-        <div class="detailsDisplay" id="displayDisplay"></div>
+            <div class="detailsDisplay" id="displayDisplay"></div>
   
-          <button style="width:100px" class="saveButton">Save Itinerary</button>
+              <button style="width:100px" class="saveButton">Save Itinerary</button>
           </div>
-  
+          
           <div class="weatherDisplay">
           <h2>Weather</h2>
+          <div class="trueWeatherDisplay">
           </div>
-        </div>
+          </div>
+          
+          </div>
   
         <div class="savedOptions">
           <h2>Saved Itinerary List</h2>

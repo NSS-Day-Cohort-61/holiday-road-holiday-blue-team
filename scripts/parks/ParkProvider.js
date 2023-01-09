@@ -29,12 +29,12 @@ document.addEventListener(
                  document.querySelector(".trueWeatherDisplay").innerHTML = ""
                  
                  //styles
-                document.getElementById("optionOption").style.backgroundImage =  `url(${park.images[0].url})`
+                //document.getElementById("optionOption").style.backgroundImage =  `url(${park.images[0].url})`
 
-                document.getElementById("bizBiz").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
-                document.getElementById("eatEat").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
-                document.getElementById("parkPark").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
-                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
+                document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
                 
 
 
@@ -55,10 +55,10 @@ document.addEventListener(
               
                 document.querySelector(".detailsDisplay").innerHTML = `${park.description}`
 
-                document.getElementById("bizBiz").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
-                document.getElementById("eatEat").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
-                document.getElementById("parkPark").style.backgroundColor = 'rgba(32, 189, 129, 0.438)'
-                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(32, 189, 129, 0.438)'
+                document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
+                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
 
             }
         }
