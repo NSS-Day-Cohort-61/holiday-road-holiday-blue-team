@@ -2,6 +2,7 @@ import { attractionList } from "./attractions/AttractionProvider.js"
 import { Parks } from "./parks/ParkProvider.js"
 import { Eateries } from "./eateries/EateryProvider.js"
 import { saveItinerary } from "./data/provider.js"
+import { displayItineraries } from "./data/SavedItinerary.js"
 
 const mainContainer = document.querySelector("#holidayRoad")
 
@@ -38,8 +39,7 @@ mainContainer.addEventListener("click", clickEvent => {
 
 export const HolidayRoad = () => {
     return `
-      <h2>Holiday Road</h2>
-    
+
       <div class="dropdownBoxes">
         <div class="parkDropdown dropdown">
           <select class="park">
@@ -63,28 +63,28 @@ export const HolidayRoad = () => {
       <div class="mainContent">
         <div class="chosenOptions">
           <div class="optionsDisplay" id="optionOption">
-            <h3>Your Itinerary</h3>
+            <h2>Your Itinerary</h2>
             
-            <div class="chosenPark chosen" id="parkPark">Selected Park
-            
-            </div>
+            <div class="chosenPark chosen" id="parkPark">Selected Park</div>
             <div class="chosenBizarre chosen" id=bizBiz> Selected  Attraction </div>
             <div class="chosenEatery chosen" id="eatEat">Selected Eatery</div>
             
-        <div class="detailsDisplay" id="displayDisplay"></div>
+            <div class="detailsDisplay" id="displayDisplay"></div>
   
-          <button style="width:100px" class="saveButton">Save Itinerary</button>
+              <button style="width:100px" class="saveButton">Save Itinerary</button>
           </div>
-  
+          
           <div class="weatherDisplay">
-          <h3>Weather Forecast</h3>
-          <div class=trueWeatherDisplay></div>
+          <h2>Weather</h2>
+          <div class="trueWeatherDisplay">
           </div>
-        </div>
+          </div>
+          
+          </div>
   
         <div class="savedOptions">
-          <h3>Saved Itinerary List</h3>
-          
+          <h2>Saved Itinerary List</h2>
+          ${displayItineraries()}
         </div>
       </div>
 
