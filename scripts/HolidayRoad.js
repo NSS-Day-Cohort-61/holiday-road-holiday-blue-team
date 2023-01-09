@@ -49,14 +49,16 @@ export const HolidayRoad = () => {
       
       <div class="mainContent">
         <div class="chosenOptions">
-          <div class="optionsDisplay">
-            <h2>Your Itinerary</h2>
+          <div class="optionsDisplay" id="optionOption">
+            <h3>Your Itinerary</h3>
             
-            <div class="chosenPark chosen">Selected Park</div>
-            <div class="chosenBizarre chosen"> Selected  Attraction </div>
-            <div class="chosenEatery chosen">Selected Eatery</div>
+            <div class="chosenPark chosen" id="parkPark">Selected Park
             
-        <div class="detailsDisplay"></div>
+            </div>
+            <div class="chosenBizarre chosen" id=bizBiz> Selected  Attraction </div>
+            <div class="chosenEatery chosen" id="eatEat">Selected Eatery</div>
+            
+        <div class="detailsDisplay" id="displayDisplay"></div>
   
           <button style="width:100px" class="saveButton">Save Itinerary</button>
           </div>
