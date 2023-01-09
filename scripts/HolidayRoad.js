@@ -8,7 +8,7 @@ const mainContainer = document.querySelector("#holidayRoad")
 
 mainContainer.addEventListener("click", clickEvent => {
   if (clickEvent.target.className === "saveButton") {
-      const selectedPark = document.querySelector("option[class='park']").value
+      const selectedPark = document.querySelector("select[class='park']").value
       const userAttraction = document.querySelector("select[name='attraction']").value
       const [, selectedAttraction] = userAttraction.split("__")
       const userEatery = document.querySelector("select[name='eatery']").value
@@ -20,18 +20,29 @@ mainContainer.addEventListener("click", clickEvent => {
           attractionId: parseInt(selectedAttraction),
           eateryId: parseInt(selectedEatery)
       }
+      if (!sendToApi.parkId || selectedPark === "Select National Park") {
+        document.querySelector(".chosenPark").innerHTML = "Please select a park"
+      }
+      else if (!sendToApi.attractionId) {
+        document.querySelector(".chosenBizarre").innerHTML = "Please select an attraction"
+      }
+      else if (!sendToApi.eateryId) {
+        document.querySelector(".chosenEatery").innerHTML = "Please select an eatery"
+      }
+      else {
+        saveItinerary(sendToApi)
+      }
       
-      saveItinerary(sendToApi)
+      
   }
 })
 
 export const HolidayRoad = () => {
     return `
-      <h2>Holiday Road</h2>
-    
+
       <div class="dropdownBoxes">
         <div class="parkDropdown dropdown">
-          <select>
+          <select class="park">
             <option> Select National Park </option> 
             ${Parks()} 
           </select>
@@ -52,28 +63,28 @@ export const HolidayRoad = () => {
       <div class="mainContent">
         <div class="chosenOptions">
           <div class="optionsDisplay" id="optionOption">
-            <h3>Your Itinerary</h3>
+            <h2>Your Itinerary</h2>
             
-            <div class="chosenPark chosen" id="parkPark">Selected Park
-            
-            </div>
+            <div class="chosenPark chosen" id="parkPark">Selected Park</div>
             <div class="chosenBizarre chosen" id=bizBiz> Selected  Attraction </div>
             <div class="chosenEatery chosen" id="eatEat">Selected Eatery</div>
             
-        <div class="detailsDisplay" id="displayDisplay"></div>
+            <div class="detailsDisplay" id="displayDisplay"></div>
   
-          <button style="width:100px" class="saveButton">Save Itinerary</button>
+              <button style="width:100px" class="saveButton">Save Itinerary</button>
           </div>
-  
+          
           <div class="weatherDisplay">
-          <h3>Weather Forecast</h3>
-          <div class=trueWeatherDisplay></div>
+          <h2>Weather</h2>
+          <div class="trueWeatherDisplay">
           </div>
-        </div>
+          </div>
+          
+          </div>
   
         <div class="savedOptions">
-          <h3>Saved Itinerary List</h3>
-          ${displayItineraries()}
+          <h2>Saved Itinerary List</h2>
+          
         </div>
   
   

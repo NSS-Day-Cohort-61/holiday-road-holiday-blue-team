@@ -1,0 +1,163 @@
+.tagline {
+    color: whitesmoke;
+    font-size: 40px;
+    text-align: center;
+    padding-bottom: 2%;       
+}
+
+header {
+    background-color: #48484A;
+    height: 150px;
+    padding-top: 5%;
+    color: whitesmoke;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 75px;
+    text-align: center;
+}
+
+.dropdownBoxes {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #48484A;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  
+}
+
+
+body {
+    margin: 0px;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+#holidayRoad{
+    display: flex;
+    flex-flow: column wrap;
+    
+}
+
+.dropdownBoxes{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 2px solid #48484A;
+    height: 80px;
+}
+
+.mainContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+.chosenOptions{
+    display: flex;
+    width: 70%;
+    
+    
+}
+
+.optionsDisplay{
+    border: 2px solid #48484A;
+    background-color: whitesmoke;
+    box-shadow: 3px 3px 5px darkgray ;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 5px 5px 20px;
+    width:70%;
+    margin-right: 10px;
+
+}
+
+
+.weatherDisplay {
+    border: 2px solid #48484A;
+    background-color:  whitesmoke;
+    box-shadow: 3px 3px 5px darkgray ;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0px 20px;
+    margin-right: 10px;
+}
+
+h3 {
+    border-bottom: 2px solid #48484A;
+    color:rgb(0, 0, 0);
+    text-shadow: 1px 2px rgba(218, 217, 217, 0.308);
+    background-color: rgba(227, 248, 240, 0.062);
+}
+
+.dayDisplay{
+    margin: 0px 0px 17px 0px;
+    padding: 10px 5px 20px 5px;
+    width: 290px;
+    border: 2px solid #48484A;
+    background-color: rgba(236, 111, 76, 0.286);
+    color:rgb(0, 0, 0);
+    font-weight: bolder;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.weatherText{
+    text-align: center;
+    align-items: center;
+    display: flex;
+}
+
+.weatherIcon {
+    width: 100px;
+    -webkit-filter: drop-shadow(3px 3px 5px darkgray);
+    filter: drop-shadow(3px 3px 5px darkgray);
+}
+
+.savedOptions{
+    border: 2px solid #48484A;
+    background-color: whitesmoke;
+    color: black;
+    box-shadow: 3px 3px 5px darkgray ;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 5px;
+}
+
+.detailsDisplay{
+   height: 40%;
+   margin-bottom: 10px;
+   border: 2px solid #48484A;
+   background-color: rgba(236, 111, 76, 0.286);
+   color:rgb(0, 0, 0);
+   font-weight: bolder;
+   height: 40%;
+   margin-bottom: 10px;
+   padding: 15px;
+   text-align: left;
+    
+}
+.chosen {
+    border: 2px solid #48484A;
+    height: 17%;
+    margin-bottom: 10px;
+    padding: 15px;
+    text-align: center;
+    line-height: 170%;
+    background-color: rgba(236, 111, 76, 0.286);
+    color:rgb(0, 0, 0);
+    font-weight: bolder;
+}
+
+h2 {
+    text-align: center;
+   
+}
+

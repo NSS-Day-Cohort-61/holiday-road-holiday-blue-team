@@ -7,28 +7,10 @@
       "id": 1
     },
     {
-      "parkId": "77E0D7F0-1942-494A-ACE2-9004D2BDC59E",
+      "parkId": "9463E25C-7342-4A34-9537-4A6DA74B2B06",
       "attractionId": 7,
-      "eateryId": 8,
-      "id": 2
-    },
-    {
-      "parkId": "77E0D7F0-1942-494A-ACE2-9004D2BDC59E",
-      "attractionId": 6,
       "eateryId": 11,
-      "id": 3
-    },
-    {
-      "parkId": "77E0D7F0-1942-494A-ACE2-9004D2BDC59E",
-      "attractionId": 9,
-      "eateryId": 8,
-      "id": 4
-    },
-    {
-      "parkId": "77E0D7F0-1942-494A-ACE2-9004D2BDC59E",
-      "attractionId": 14,
-      "eateryId": 16,
-      "id": 5
+      "id": 2
     }
   ]
 }
