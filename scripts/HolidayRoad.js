@@ -86,8 +86,11 @@ export const HolidayRoad = () => {
           <h3>Saved Itinerary List</h3>
           
         </div>
-  
-  
       </div>
+
+        <div class="routeDirections">
+          <h3>Directions</h3>
+        </div>
+  
       `
   }
