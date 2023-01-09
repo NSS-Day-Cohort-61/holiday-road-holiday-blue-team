@@ -2,6 +2,7 @@ import { attractionList } from "./attractions/AttractionProvider.js"
 import { Parks } from "./parks/ParkProvider.js"
 import { Eateries } from "./eateries/EateryProvider.js"
 import { saveItinerary } from "./data/provider.js"
+import { displayItineraries } from "./data/SavedItinerary.js"
 
 const mainContainer = document.querySelector("#holidayRoad")
 
@@ -83,7 +84,7 @@ export const HolidayRoad = () => {
   
         <div class="savedOptions">
           <h2>Saved Itinerary List</h2>
-          
+          ${displayItineraries()}
         </div>
   
   
