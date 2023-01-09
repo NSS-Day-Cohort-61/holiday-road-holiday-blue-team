@@ -26,9 +26,3 @@ applicationElement.addEventListener(
         renderApp()
     }
 )
-applicationElement.addEventListener(
-    "newFetch",
-    customEvent => {
-       getWeather()
-    }
-)

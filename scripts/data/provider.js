@@ -62,12 +62,12 @@ export const fetchWeather = (parkObj) => {
     .then(
         (data) => {
             applicationState.weather = data
-                const fiveDayIndex = [data.list[0], data.list[1],data.list[9], data.list[17],data.list[25]]
+                const fiveDayIndex = [data.list[1],data.list[9], data.list[17],data.list[25], data.list[33]]
                 for (const forecast of fiveDayIndex){
                     document.querySelector(".trueWeatherDisplay").innerHTML += `
-                        <li> 
+                        <div class="dayDisplay"> 
                         ${
-                            new Date(forecast.dt_txt)
+                            new Date(forecast.dt_txt).toDateString()
                         }
                         <br>
                         high temp of
@@ -77,7 +77,7 @@ export const fetchWeather = (parkObj) => {
                         <br>
                         ${forecast.weather[0].description}
                         <br>
-                        <br>
+                        </div>
                         `
                 }
              

@@ -12,6 +12,11 @@ document.addEventListener("change", changeEvent => {
             <br><button style="width:100px" class="eateryDetails-${eatery.id}">Details</button>
             `
             document.querySelector(".detailsDisplay").innerHTML = ""
+
+            document.getElementById("bizBiz").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
+            document.getElementById("eatEat").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
+            document.getElementById("parkPark").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
+            document.getElementById("displayDisplay").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
         }
     }).join("")
 })
@@ -21,6 +26,11 @@ document.addEventListener("click", clickEvent => {
     eateries.map(eatery => {
         if (clickEvent.target.className === `eateryDetails-${eatery.id}`) {
             document.querySelector(".detailsDisplay").innerHTML = `${eatery.description}`
+
+            document.getElementById("bizBiz").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
+                document.getElementById("eatEat").style.backgroundColor = 'rgba(32, 189, 129, 0.438)'
+                document.getElementById("parkPark").style.backgroundColor = 'rgba(227, 248, 240, 0.295)'
+                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(32, 189, 129, 0.438)'
         }
     })
 })
