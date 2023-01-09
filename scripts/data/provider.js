@@ -1,6 +1,5 @@
 import apiKeys from "../Settings.js"
-
-
+//json-server db.json -p 8088 -w
 
 const applicationState = {
   itineraries: [],
@@ -65,18 +64,23 @@ export const fetchWeather = (parkObj) => {
                 const fiveDayIndex = [data.list[1],data.list[9], data.list[17],data.list[25], data.list[33]]
                 for (const forecast of fiveDayIndex){
                     document.querySelector(".trueWeatherDisplay").innerHTML += `
-                        <div class="dayDisplay"> 
-                        ${
+                        
+                        <div class="dayDisplay">
+                            <div class="weatherText">
+                            ${
                             new Date(forecast.dt_txt).toDateString()
-                        }
-                        <br>
-                        high temp of
-                        ${
+                            }
+                            <br>
+                            high temp of
+                            ${
                             Math.floor(1.8 * (forecast.main.temp - 273.15) + 32)
-                        } F
-                        <br>
-                        ${forecast.weather[0].description}
-                        <br>
+                            } F
+                            <br>
+                            ${forecast.weather[0].description}
+                            <br>
+                        </div>
+                        <div class="weatherIcon"><img src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png">
+                        </div>
                         </div>
                         `
                 }
