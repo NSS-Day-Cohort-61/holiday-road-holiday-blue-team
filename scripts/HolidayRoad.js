@@ -2,6 +2,7 @@ import { attractionList } from "./attractions/AttractionProvider.js"
 import { Parks } from "./parks/ParkProvider.js"
 import { Eateries } from "./eateries/EateryProvider.js"
 import { saveItinerary } from "./data/provider.js"
+import { displayItineraries } from "./data/SavedItinerary.js"
 
 const mainContainer = document.querySelector("#holidayRoad")
 
@@ -19,7 +20,7 @@ mainContainer.addEventListener("click", clickEvent => {
           attractionId: parseInt(selectedAttraction),
           eateryId: parseInt(selectedEatery)
       }
-
+      
       saveItinerary(sendToApi)
   }
 })
@@ -72,7 +73,7 @@ export const HolidayRoad = () => {
   
         <div class="savedOptions">
           <h3>Saved Itinerary List</h3>
-          
+          ${displayItineraries()}
         </div>
   
   

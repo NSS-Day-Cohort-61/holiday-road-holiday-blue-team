@@ -5,6 +5,30 @@
       "attractionId": 2,
       "eateryId": 3,
       "id": 1
+    },
+    {
+      "parkId": "77E0D7F0-1942-494A-ACE2-9004D2BDC59E",
+      "attractionId": 7,
+      "eateryId": 8,
+      "id": 2
+    },
+    {
+      "parkId": "77E0D7F0-1942-494A-ACE2-9004D2BDC59E",
+      "attractionId": 6,
+      "eateryId": 11,
+      "id": 3
+    },
+    {
+      "parkId": "77E0D7F0-1942-494A-ACE2-9004D2BDC59E",
+      "attractionId": 9,
+      "eateryId": 8,
+      "id": 4
+    },
+    {
+      "parkId": "77E0D7F0-1942-494A-ACE2-9004D2BDC59E",
+      "attractionId": 14,
+      "eateryId": 16,
+      "id": 5
     }
   ]
 }

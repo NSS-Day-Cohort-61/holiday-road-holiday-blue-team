@@ -9,7 +9,7 @@ export const renderApp = () => {
     .then(() => fetchEateries())
     .then(() => fetchParks())
     // .then(() => fetchWeather())
-    //.then(() => fetchItinerary())
+    .then(() => fetchItinerary())
     .then(
         () => {
             applicationElement.innerHTML = HolidayRoad()

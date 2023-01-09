@@ -112,3 +112,7 @@ export const fetchItinerary = () => {
             }
         )
 }
+
+export const getItineraries = () => {
+    return applicationState.itineraries.map(it => ({...it}))
+}
