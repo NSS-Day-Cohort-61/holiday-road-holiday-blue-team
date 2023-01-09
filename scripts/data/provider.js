@@ -6,7 +6,8 @@ const applicationState = {
   itineraries: [],
   parks: [],
   attractions: [],
-  eateries:[]
+  eateries:[],
+  weather: []
 }
 
 export const fetchParks = () => {
@@ -54,15 +55,34 @@ export const getEateries = () => {
     return applicationState.eateries.map(eat => ({...eat}))
 }
 
-export const fetchWeather = () => {
-    // return fetch (`api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=${apiKeys.weatherKey}`)
-    // .then(res => res.json())
-    // .then(
-    //     (data) => {
-    //         applicationState.weather = data
-    //     }
-    // )
-}
+export const fetchWeather = (parkObj) => {
+    
+    return fetch (`https://api.openweathermap.org/data/2.5/forecast?lat=${parkObj.latitude}&lon=${parkObj.longitude}&appid=${apiKeys.weatherKey}`)
+    .then(res => res.json())
+    .then(
+        (data) => {
+            applicationState.weather = data
+                const fiveDayIndex = [data.list[1],data.list[9], data.list[17],data.list[25], data.list[33]]
+                for (const forecast of fiveDayIndex){
+                    document.querySelector(".trueWeatherDisplay").innerHTML += `
+                        <div class="dayDisplay"> 
+                        ${
+                            new Date(forecast.dt_txt).toDateString()
+                        }
+                        <br>
+                        high temp of
+                        ${
+                            Math.floor(1.8 * (forecast.main.temp - 273.15) + 32)
+                        } F
+                        <br>
+                        ${forecast.weather[0].description}
+                        <br>
+                        </div>
+                        `
+                }
+             
+})}
+
 
 export const getWeather = () => {
     return applicationState.weather.map(forecast => ({...forecast}))
