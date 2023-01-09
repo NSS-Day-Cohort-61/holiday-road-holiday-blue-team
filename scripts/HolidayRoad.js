@@ -7,7 +7,7 @@ const mainContainer = document.querySelector("#holidayRoad")
 
 mainContainer.addEventListener("click", clickEvent => {
   if (clickEvent.target.className === "saveButton") {
-      const selectedPark = document.querySelector("option[class='park']").value
+      const selectedPark = document.querySelector("select[class='park']").value
       const userAttraction = document.querySelector("select[name='attraction']").value
       const [, selectedAttraction] = userAttraction.split("__")
       const userEatery = document.querySelector("select[name='eatery']").value
@@ -19,8 +19,20 @@ mainContainer.addEventListener("click", clickEvent => {
           attractionId: parseInt(selectedAttraction),
           eateryId: parseInt(selectedEatery)
       }
-
-      saveItinerary(sendToApi)
+      if (!sendToApi.parkId || selectedPark === "Select National Park") {
+        document.querySelector(".chosenPark").innerHTML = "Please select a park"
+      }
+      else if (!sendToApi.attractionId) {
+        document.querySelector(".chosenBizarre").innerHTML = "Please select an attraction"
+      }
+      else if (!sendToApi.eateryId) {
+        document.querySelector(".chosenEatery").innerHTML = "Please select an eatery"
+      }
+      else {
+        saveItinerary(sendToApi)
+      }
+      
+      
   }
 })
 
@@ -30,7 +42,7 @@ export const HolidayRoad = () => {
     
       <div class="dropdownBoxes">
         <div class="parkDropdown dropdown">
-          <select>
+          <select class="park">
             <option> Select National Park </option> 
             ${Parks()} 
           </select>

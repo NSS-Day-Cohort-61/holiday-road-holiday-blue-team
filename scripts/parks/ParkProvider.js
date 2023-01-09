@@ -5,7 +5,7 @@ export const Parks = () => {
     const parks = getParks()
     let html = ""
     for (const park of parks) {
-        html += `<option class="park" value="${park.id}">${park.fullName} </option>
+        html += `<option value="${park.id}">${park.fullName} </option>
         `
     }
     return html
