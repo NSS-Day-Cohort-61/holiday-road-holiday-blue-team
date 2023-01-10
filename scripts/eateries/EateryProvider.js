@@ -20,6 +20,7 @@ document.addEventListener("change", changeEvent => {
         }
     }).join("")
 })
+
 document.addEventListener("click", clickEvent => {
     const eateries = getEateries()
 
@@ -39,7 +40,7 @@ export const Eateries = () => {
     const eateries = getEateries()
 
     let html = `
-            <select id="eatery" name="eatery">
+            <select id="eatery" name="eatery" multiple>
             <option value="0">Choose Eatery</option>
             `
 
