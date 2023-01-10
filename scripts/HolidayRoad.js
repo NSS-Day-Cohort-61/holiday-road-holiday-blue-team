@@ -1,7 +1,7 @@
 import { attractionList } from "./attractions/AttractionProvider.js"
 import { Parks } from "./parks/ParkProvider.js"
 import { Eateries } from "./eateries/EateryProvider.js"
-import { saveItinerary } from "./data/provider.js"
+import { getAttractions, getEateries, getParks, saveItinerary } from "./data/provider.js"
 import { displayItineraries } from "./data/SavedItinerary.js"
 
 const mainContainer = document.querySelector("#holidayRoad")
@@ -36,6 +36,16 @@ mainContainer.addEventListener("click", clickEvent => {
       
   }
 })
+
+const searchBar = () => {
+  const attractions = getAttractions()
+  const eateries = getEateries()
+  const parks = getParks()
+
+  // when i type look through 3 arrays to compare type.toUpperCase() to array[].name.toUpperCase()
+  // if !type.target remove from display
+  // if !typeBox searchlist visibility = 0 
+}
 
 export const HolidayRoad = () => {
     return `

@@ -31,6 +31,12 @@ document.addEventListener(
                  //styles
                 //document.getElementById("optionOption").style.backgroundImage =  `url(${park.images[0].url})`
 
+                let children = document.querySelector(".chosenEatery").children;
+                
+            for (const child of children) {
+                child.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+            }
+
                 document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
                 document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
                 document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
@@ -54,6 +60,13 @@ document.addEventListener(
             if (clickEvent.target.className === `parkDetailsButton__${park.id}`) {
               
                 document.querySelector(".detailsDisplay").innerHTML = `${park.description}`
+
+
+                let children = document.querySelector(".chosenEatery").children;
+                
+            for (const child of children) {
+                child.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+            }
 
                 document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
                 document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
