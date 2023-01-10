@@ -7,9 +7,11 @@ document.addEventListener("change", changeEvent => {
 
     eateries.map(eatery => {
         if (changeEvent.target.value === `eatery__${eatery.id}`) {
-            document.querySelector(".chosenEatery").innerHTML = `${eatery.businessName}
+            document.querySelector(".chosenEatery").innerHTML += `<div class="bigEats" id="bigEats-${eatery.id}">${eatery.businessName}
             <br> ${eatery.city}, ${eatery.state}
             <br><button style="width:100px" class="eateryDetails-${eatery.id}">Details</button>
+            <button style="width:100px" class="eateryRemove-${eatery.id}">Remove</button>
+            </div>
             `
             document.querySelector(".detailsDisplay").innerHTML = ""
 
@@ -20,20 +22,53 @@ document.addEventListener("change", changeEvent => {
         }
     }).join("")
 })
+
+document.addEventListener("click", clickEvent => {
+    const eateries = getEateries()
+
+    eateries.map(eatery => {
+        if (clickEvent.target.className === `eateryRemove-${eatery.id}`) {
+            
+            
+            document.getElementById(`bigEats-${eatery.id}`).remove()
+            
+            if (document.querySelector(".detailsDisplay").innerHTML === `<div id="eat-${eatery.id}">${eatery.description}</div>`){
+                document.querySelector(".detailsDisplay").innerHTML = ''
+                document.getElementById(`displayDisplay`).style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById(`bigEats-${eatery.id}`).style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+            }
+        }
+        
+    })
+})
+
+
 document.addEventListener("click", clickEvent => {
     const eateries = getEateries()
 
     eateries.map(eatery => {
         if (clickEvent.target.className === `eateryDetails-${eatery.id}`) {
-            document.querySelector(".detailsDisplay").innerHTML = `${eatery.description}`
+            document.querySelector(".detailsDisplay").innerHTML = `<div id="eat-${eatery.id}">${eatery.description}</div>`
 
             document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-                document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
-                document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
+            document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+           
+            
+                let children = document.querySelector(".chosenEatery").children;
+                
+                for (const child of children) {
+                    child.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                }
+               
+            
+            
+            document.getElementById(`bigEats-${eatery.id}`).style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
+            document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
+            
         }
     })
 })
+
 
 export const Eateries = () => {
     const eateries = getEateries()
