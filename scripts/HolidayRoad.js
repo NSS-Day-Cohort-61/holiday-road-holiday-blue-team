@@ -41,6 +41,7 @@ export const HolidayRoad = () => {
     return `
 
       <div class="dropdownBoxes">
+         
         <div class="parkDropdown dropdown">
           <select class="park">
             <option> Select National Park </option> 
@@ -57,6 +58,9 @@ export const HolidayRoad = () => {
   
         <div class="eateryDropdown dropdown">
           ${Eateries()}
+        </div>
+        <div class="searchBar dropdown">
+          <input type="search" id="search" placeholder="Search" >
         </div>
       </div>
       
