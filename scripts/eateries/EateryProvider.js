@@ -15,6 +15,12 @@ document.addEventListener("change", changeEvent => {
             `
             document.querySelector(".detailsDisplay").innerHTML = ""
 
+            let children = document.querySelector(".chosenEatery").children;
+                
+            for (const child of children) {
+                child.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+            }
+
             document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
             document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
             document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
