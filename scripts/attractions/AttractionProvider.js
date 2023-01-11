@@ -30,11 +30,17 @@ document.addEventListener("change", (event) => {
                 `
                 document.querySelector(".detailsDisplay").innerHTML = ""
 
-                let children = document.querySelector(".chosenEatery").children;
+                let eatchildren = document.querySelector(".chosenEatery").children;
                 
-            for (const child of children) {
-                child.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
-            }
+                for (const eatchild of eatchildren) {
+                    eatchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                }
+
+                let bizchildren = document.querySelector(".chosenBizarre").children;
+                
+                for (const bizchild of bizchildren) {
+                    bizchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                }
 
                 document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
                 document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
@@ -53,12 +59,28 @@ document.addEventListener("click", (event) => {
         attract => {
             if (event.target.className === `bizDetails__${attract.id}`) {
                 document.querySelector(".detailsDisplay").innerHTML = `<div class='bizDetails__${attract.id}'>${attract.description}</div>`
+                
+                document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+
+                
+                let eatchildren = document.querySelector(".chosenEatery").children;
+                
+                for (const eatchild of eatchildren) {
+                    eatchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                }
+
+                let bizchildren = document.querySelector(".chosenBizarre").children;
+                
+                for (const bizchild of bizchildren) {
+                    bizchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                }               
+                
                 document.getElementById(`biz__${attract.id}`).style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
                 document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
               
-                document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
             }
-        }).join("")
+        })
     
 })
 
