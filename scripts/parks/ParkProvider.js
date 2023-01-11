@@ -31,11 +31,6 @@ document.addEventListener(
                  //styles
                 //document.getElementById("optionOption").style.backgroundImage =  `url(${park.images[0].url})`
 
-                let children = document.querySelector(".chosenEatery").children;
-                
-            for (const child of children) {
-                child.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
-            }
 
                 document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
                 document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
@@ -60,19 +55,22 @@ document.addEventListener(
             if (clickEvent.target.className === `parkDetailsButton__${park.id}`) {
               
                 document.querySelector(".detailsDisplay").innerHTML = `${park.description}`
-
-
-                let children = document.querySelector(".chosenEatery").children;
-                
-            for (const child of children) {
-                child.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
-            }
-
                 document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
                 document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
                 document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
                 document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
 
+                let eatchildren = document.querySelector(".chosenEatery").children;
+                
+                for (const eatchild of eatchildren) {
+                    eatchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                }
+
+                let bizchildren = document.querySelector(".chosenBizarre").children;
+                
+                for (const bizchild of bizchildren) {
+                    bizchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                }
             }
         }
         
