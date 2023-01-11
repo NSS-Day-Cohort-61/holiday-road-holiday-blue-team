@@ -6,7 +6,11 @@ const applicationState = {
   parks: [],
   attractions: [],
   eateries:[],
-  weather: []
+  weather: [],
+  attractionCoordinates: [],
+  eateryCoordinates: [],
+  nashvilleCoordinates: [],
+  directions: []
 }
 
 export const fetchParks = () => {
@@ -116,7 +120,56 @@ export const fetchItinerary = () => {
             }
         )
 }
-
 export const getItineraries = () => {
     return applicationState.itineraries.map(it => ({...it}))
+}
+
+export const fetchAttractionCoordinates = (attractionCity, attractionState) => {
+    return fetch(`https://graphhopper.com/api/1/geocode?q=${attractionCity.city}+${attractionState}&locale=us&debug=true&key=${apiKeys.graphhopperKey}`)
+    .then(response => response.json())
+    .then(
+        (attractionCoordinates) => {
+            applicationState.attractionCoordinates = attractionCoordinates.hits
+        }
+    )
+}
+export const fetchEateryCoordinates = (eateryCity, eateryState) => {
+    return fetch(`https://graphhopper.com/api/1/geocode?q=${eateryCity.city}+${eateryState}&locale=us&debug=true&key=${apiKeys.graphhopperKey}`)
+    .then(response => response.json())
+    .then(
+        (eateryCoordinates) => {
+            applicationState.eateryCoordinates = eateryCoordinates.hits
+        }
+    )
+}
+export const fetchNashvilleCoordinates = () => {
+    return fetch(`https://graphhopper.com/api/1/geocode?q=nashville-davidson&locale=us&debug=true&key=${apiKeys.graphhopperKey}`)
+    .then(response => response.json())
+    .then(
+        (nashvilleCoordinates) => {
+            applicationState.nashvilleCoordinates = nashvilleCoordinates.hits
+        }
+    )
+}
+export const getAttractionCoordinates = () => {
+    return [...applicationState.attractionCoordinates]
+}
+export const getEateryCoordinates = () => {
+    return [...applicationState.eateryCoordinates]
+}
+export const getNashvilleCoordinates = () => {
+    return [...applicationState.nashvilleCoordinates]
+}
+
+export const fetchDirections = (start, end) => {
+    return fetch(`https://graphhopper.com/api/1/route?point=${start.latitude},${start.longitude}&point=${end.latitude},${end.longitude}&vehicle=car&locale=us&instructions=true&calc_points=true&key=${apiKeys.graphhopperKey}`)
+    .then(response => response.json())
+    .then(
+        (startToEnd) => {
+            applicationState.directions = startToEnd.paths
+        }
+    )
+}
+export const getDirections = () => {
+    return [...applicationState.directions]
 }
