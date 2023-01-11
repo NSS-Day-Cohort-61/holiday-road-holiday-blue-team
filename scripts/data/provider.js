@@ -60,7 +60,7 @@ export const fetchWeather = (parkObj) => {
     .then(res => res.json())
     .then(
         (data) => {
-            applicationState.weather = data
+        
                 const fiveDayIndex = [data.list[1],data.list[9], data.list[17],data.list[25], data.list[33]]
                 for (const forecast of fiveDayIndex){
                     document.querySelector(".trueWeatherDisplay").innerHTML += `

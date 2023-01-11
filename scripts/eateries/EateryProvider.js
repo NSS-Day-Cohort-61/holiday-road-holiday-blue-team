@@ -35,33 +35,37 @@ document.addEventListener("change", changeEvent => {
 
 document.addEventListener("click", changeEvent => {
     const eateries = getEateries()
+    let eatchildren = document.querySelector(".chosenEatery").children;
+
     eateries.map(eatery => {
         if (changeEvent.target.id === `search-eat-${eatery.id}`) {
-            document.querySelector(".chosenEatery").innerHTML += `<div class="bigEats" id="bigEats-${eatery.id}">${eatery.businessName}
-            <br> ${eatery.city}, ${eatery.state}
-            <br><button style="width:100px" class="eateryDetails-${eatery.id}">Details</button>
-            <button style="width:100px" class="eateryRemove-${eatery.id}">Remove</button>
-            </div>
-            `
-            document.querySelector(".detailsDisplay").innerHTML = ""
+            // if (div doesn not exist here){
 
-            let eatchildren = document.querySelector(".chosenEatery").children;
+                document.querySelector(".chosenEatery").innerHTML += `<div class="bigEats" id="bigEats-${eatery.id}">${eatery.businessName}
+                <br> ${eatery.city}, ${eatery.state}
+                <br><button style="width:100px" class="eateryDetails-${eatery.id}">Details</button>
+                <button style="width:100px" class="eateryRemove-${eatery.id}">Remove</button>
+                </div>
+                `
+                document.querySelector(".detailsDisplay").innerHTML = ""
                 
-            for (const eatchild of eatchildren) {
-                eatchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
-            }
-
-            let bizchildren = document.querySelector(".chosenBizarre").children;
-            
-            for (const bizchild of bizchildren) {
-                bizchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
-            }
-
-
-            document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-            document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-            document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-            document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                
+                for (const eatchild of eatchildren) {
+                    eatchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                }
+                
+                let bizchildren = document.querySelector(".chosenBizarre").children;
+                
+                for (const bizchild of bizchildren) {
+                    bizchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                }
+                
+                
+                document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                // }
         }
     }).join("")
 })
