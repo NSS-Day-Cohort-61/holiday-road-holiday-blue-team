@@ -43,9 +43,6 @@ const searchBar = () => {
   const parks = getParks()
 
   let html = ""
-  // when i type look through 3 arrays to compare type.toUpperCase() to array[].name.toUpperCase()
-  // if !type.target remove from display
-  // if !typeBox searchlist visibility = 0 
 
   html += attractions.map(
     biz => {
@@ -148,12 +145,13 @@ export const HolidayRoad = () => {
   }
 
   mainContainer.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "search") {
+    // if (clickEvent.target.id === "search") {
 
       document.getElementById('search-box-2').style.visibility = 'hidden'
       document.getElementById('search-box-2').style.opacity = 0
     
-    }})
+    // }
+  })
 
 
 
