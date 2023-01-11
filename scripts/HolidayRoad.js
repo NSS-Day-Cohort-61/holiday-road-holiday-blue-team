@@ -3,6 +3,7 @@ import { Parks } from "./parks/ParkProvider.js"
 import { Eateries } from "./eateries/EateryProvider.js"
 import { saveItinerary } from "./data/provider.js"
 import { displayItineraries } from "./data/SavedItinerary.js"
+import { Directions } from "./directions/DirectionProvider.js"
 
 const mainContainer = document.querySelector("#holidayRoad")
 
@@ -90,6 +91,7 @@ export const HolidayRoad = () => {
 
         <div class="routeDirections">
           <h3>Directions</h3>
+          ${Directions()}
         </div>
   
       `
