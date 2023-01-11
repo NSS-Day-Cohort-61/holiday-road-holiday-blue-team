@@ -49,6 +49,42 @@ document.addEventListener(
     
 document.addEventListener(
     "click",
+    (event) => {
+        const parks = getParks()
+        for (const park of parks) {
+            if (event.target.id === `search-park-${park.id}`) {
+
+                document.querySelector(".chosenPark").innerHTML = `
+                 ${park.fullName} 
+                 <br> ${park.addresses[0].city}, ${park.addresses[0].stateCode}
+                 <br>
+                 <button style="width:100px" class="parkDetailsButton__${park.id}">Details</button>
+                 `
+                 // reset html
+                 document.querySelector(".detailsDisplay").innerHTML = ""
+                 document.querySelector(".trueWeatherDisplay").innerHTML = ""
+                 
+                 //styles
+                //document.getElementById("optionOption").style.backgroundImage =  `url(${park.images[0].url})`
+
+
+                document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                
+
+
+                fetchWeather(park)
+                .then(() => getWeather())
+            }
+        }
+        
+    }
+    )
+    
+document.addEventListener(
+    "click",
     clickEvent => {
         const parks = getParks()
         for (const park of parks) {

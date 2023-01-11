@@ -42,10 +42,44 @@ const searchBar = () => {
   const eateries = getEateries()
   const parks = getParks()
 
-  // when i type look through 3 arrays to compare type.toUpperCase() to array[].name.toUpperCase()
-  // if !type.target remove from display
-  // if !typeBox searchlist visibility = 0 
+  let html = ""
+
+  html += attractions.map(
+    biz => {
+      return `<a href="#">
+      <div class='search-ticket' id="search-biz-${biz.id}"> ${biz.name} </div>
+      </a>`
+    }
+  ).join("")
+   
+  html += eateries.map(
+    eat => {
+      return `<a href="#">
+      <div class='search-ticket' id="search-eat-${eat.id}"> ${eat.businessName} </div>
+      </a>`
+    }
+  ).join("")
+
+  html += parks.map(
+    park => {
+      return ` <a href="#">
+      <div class='search-ticket' id="search-park-${park.id}"> ${park.fullName} </div>
+      </a>`
+    }
+  ).join("")
+
+  
+  return html
+  
 }
+
+
+
+
+
+
+
+
 
 export const HolidayRoad = () => {
     return `
@@ -69,9 +103,13 @@ export const HolidayRoad = () => {
         <div class="eateryDropdown dropdown">
           ${Eateries()}
         </div>
-        <div class="searchBar dropdown">
+        <div class="search" id='search-container'>
           <input type="search" id="search" placeholder="Search" >
-        </div>
+          <div class="search-box" id='search-box-2'>
+          ${searchBar()}
+           
+          </div>
+          </div>
       </div>
       
       <div class="mainContent">
@@ -105,3 +143,38 @@ export const HolidayRoad = () => {
       </div>
       `
   }
+
+  mainContainer.addEventListener("click", clickEvent => {
+    // if (clickEvent.target.id === "search") {
+
+      document.getElementById('search-box-2').style.visibility = 'hidden'
+      document.getElementById('search-box-2').style.opacity = 0
+    
+    // }
+  })
+
+
+
+  document.addEventListener('keyup', () => {
+    let filter = document.getElementById('search').value.toUpperCase();
+    let a = document.getElementById('search-box-2').getElementsByTagName('a');
+    for (let i = 0; i < a.length; i++) {
+      let b = a[i].getElementsByClassName('search-ticket')[0];
+     
+      
+      let TextValue = b.textContent || b.innerText;
+      if (TextValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = ''
+        document.getElementById('search-box-2').style.visibility = 'visible'
+        document.getElementById('search-box-2').style.opacity = 1
+      } else {
+        a[i].style.display = 'none'
+      }
+      if (document.getElementById('search').value == 0) {
+        document.getElementById('search-box-2').style.visibility = 'hidden'
+        document.getElementById('search-box-2').style.opacity = 0
+      }
+    }
+    
+  })
+  
