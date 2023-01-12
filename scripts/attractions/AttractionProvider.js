@@ -21,9 +21,10 @@ const attractions = getAttractions()
 //selected
 document.addEventListener("change", (event) => {
     const biz = getAttractions()
+    let bizchildren = document.querySelector(".chosenBizarre").children;
     biz.map(
         attract => {
-            if (event.target.value === `biz__${attract.id}`) {
+            if (event.target.value === `biz__${attract.id}` && !bizchildren.namedItem(`biz__${attract.id}`)) {
                 document.querySelector(".chosenBizarre").innerHTML += `<div id='biz__${attract.id}'>${attract.name} 
                 <br> ${attract.city}, ${attract.state} 
                 <div> <button style="width:100px" class="bizDetails__${attract.id}">Details</button> <button style="width:100px" class="removeBiz__${attract.id}">Remove</button> </div></div>
@@ -54,9 +55,10 @@ document.addEventListener("change", (event) => {
 
 document.addEventListener("click", (event) => {
     const biz = getAttractions()
+    let bizchildren = document.querySelector(".chosenBizarre").children;
     biz.map(
         attract => {
-            if (event.target.id === `search-biz-${attract.id}`) {
+            if (event.target.id === `search-biz-${attract.id}` && !bizchildren.namedItem(`biz__${attract.id}`)) {
                 document.querySelector(".chosenBizarre").innerHTML += `<div id='biz__${attract.id}'>${attract.name} 
                 <br> ${attract.city}, ${attract.state} 
                 <div> <button style="width:100px" class="bizDetails__${attract.id}">Details</button> <button style="width:100px" class="removeBiz__${attract.id}">Remove</button> </div></div>

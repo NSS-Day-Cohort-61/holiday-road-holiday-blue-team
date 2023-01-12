@@ -10,6 +10,8 @@ const mainContainer = document.querySelector("#holidayRoad")
 mainContainer.addEventListener("click", clickEvent => {
   if (clickEvent.target.className === "saveButton") {
       const selectedPark = document.querySelector("select[class='park']").value
+
+      
       const userAttraction = document.querySelector("select[name='attraction']").value
       const [, selectedAttraction] = userAttraction.split("__")
       const userEatery = document.querySelector("select[name='eatery']").value
