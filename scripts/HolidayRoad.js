@@ -162,7 +162,7 @@ export const HolidayRoad = () => {
       </div>
 
         <div class="routeDirections">
-          <h3>Directions</h3>
+        <h3>Directions</h3>
           ${Directions()}
         </div>
   

@@ -72,46 +72,47 @@ document.addEventListener("click", clickEvent => {
 
             const htmlDirections = () => {
                 const directions = getDirections()
-                let html = "<ol>"
-                    directions.map(direction => {
-                        direction.instructions.map(instruction => {
-                            if (Math.abs(instruction.distance*0.000621371192) === 0 ) {
-                                html += `<li>${instruction.text}</li>` 
-                            }
-                            else if (Math.abs(instruction.distance*0.000621371192) <= 0.25) {
-                                html += `<li>${instruction.text} for ${Math.round(instruction.distance*3.2808)} feet</li>` 
-                            }
-                            else { 
-                                html += `<li>${instruction.text} for ${Math.abs(instruction.distance*0.000621371192).toFixed(2)} miles</li>`
-                            }    
-                        }).join("")
-                    })
+                let html = "<h3>Directions</h3>"
+                let htmlInfo = "<h4>Info</h4>"
+                directions.map(direction => {
+                    htmlInfo += `<div>Total Distance: ${(direction.distance*0.000621371192).toFixed(2)} Miles</div>`
+                    htmlInfo += `<div>Total Time: ${(direction.time/3600000).toFixed(2)} Hours</div>`                
                     
-                html += "</ol>"     
+                    html += `<div class="instructions">`
+                    html += `<div class="start">`
+                    html += "<ol>"
+                    direction.instructions.map(instruction => {                        
+                        if (Math.abs(instruction.distance*0.000621371192) === 0) { ///assigns class to waypoint 1, waypoint 2, and national park
+                            html += `</ol>
+                                    </div>
+                                    <div class="points">
+                                    <ol>
+                                    <li class="wayPoints">${instruction.text}</li>
+                                    `
+                        }
+                        else if (Math.abs(instruction.distance*0.000621371192) <= 0.25) {
+                            html += `<li>${instruction.text} for ${Math.round(instruction.distance*3.2808)} feet</li>` 
+                        }
+                        else { 
+                            html += `<li>${instruction.text} for ${Math.abs(instruction.distance*0.000621371192).toFixed(2)} miles</li>`
+                        }
+                    }).join("")
+                    html += "</ol>"     
+                    html += "</div>"
+                    html += "</div>"
+                    html += `<div class="info"></div>`
+                })
+                    
                 document.querySelector(".routeDirections").innerHTML = html
+                document.querySelector(".info").innerHTML = htmlInfo
             }
     
 })
 
-//need to define a function that feeds into grasshopper and displays directions
+
 export const Directions = () => {
-    const parks = getParks()
-    const itineraries = getItineraries()
 
-    let html = "<ul>"
+    let html = "<div>Please select an itinerary to display directions</div>"
     
-    itineraries.map(itinerary => {
-        parks.map(park => {
-                if (park.id === itinerary.parkId) {
-                    html += `
-                    <li>
-                    ${park.fullName}
-                    </li>
-                    `
-                }
-        })
-    })
-
-    html += "</ul>"
     return html
 }
