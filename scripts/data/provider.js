@@ -10,7 +10,9 @@ const applicationState = {
   attractionCoordinates: [],
   eateryCoordinates: [],
   nashvilleCoordinates: [],
-  directions: []
+  directions: [],
+  itineraryAttractions:[],
+  itineraryEateries:[]
 }
 
 export const fetchParks = () => {
@@ -104,12 +106,11 @@ export const saveItinerary = (input) => {
         },
         body: JSON.stringify(input)
     }
-    const mainContainer = document.querySelector("#holidayRoad")
     return fetch(`http://localhost:8088/itineraries`, fetchOptions)
-        .then(response => response.json())
-        .then(() => {
-            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
-        })
+        // .then(response => response.json())
+        // .then((data) => {
+        //     console.log(data)
+        // })
 }
 export const fetchItinerary = () => {
     return fetch(`http://localhost:8088/itineraries`)
@@ -189,6 +190,22 @@ export const saveAttractions = (input) => {
             // mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
         })
 }
+
+export const fetchItineraryAttractions = () => {
+    return fetch (`http://localhost:8088/itineraryAttractions`)
+    .then(response => response.json())
+    .then(
+        (servicePosts) => {
+          
+            applicationState.itineraryAttractions = servicePosts
+        }
+        )
+}
+
+export const getItineraryAttractions = () => {
+    return applicationState.itineraryAttractions.map(iA => ({...iA}))
+}
+
 export const saveEateries = (input) => {
     const fetchOptions = {
         method: "POST",
@@ -203,4 +220,19 @@ export const saveEateries = (input) => {
         .then(() => {
             // mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
         })
+}
+
+export const fetchItineraryEateries = () => {
+    return fetch (`http://localhost:8088/itineraryEateries`)
+    .then(response => response.json())
+    .then(
+        (servicePosts) => {
+          
+            applicationState.itineraryEateries = servicePosts
+        }
+        )
+}
+
+export const getItineraryEateries = () => {
+    return applicationState.itineraryEateries.map(iE => ({...iE}))
 }

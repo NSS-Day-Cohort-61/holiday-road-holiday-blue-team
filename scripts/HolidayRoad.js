@@ -1,6 +1,6 @@
-import { attractionList } from "./attractions/AttractionProvider.js"
+import { AllSelectedAttractions, attractionList } from "./attractions/AttractionProvider.js"
 import { Parks } from "./parks/ParkProvider.js"
-import { Eateries } from "./eateries/EateryProvider.js"
+import { AllSelectedEateries, Eateries } from "./eateries/EateryProvider.js"
 import { getAttractions, getEateries, getParks, saveAttractions, saveEateries, saveItinerary } from "./data/provider.js"
 import { displayItineraries } from "./data/SavedItinerary.js"
 import { Directions } from "./directions/DirectionProvider.js"
@@ -11,56 +11,45 @@ mainContainer.addEventListener("click", clickEvent => {
   if (clickEvent.target.className === "saveButton") {
       const selectedPark = document.querySelector("select[class='park']").value
 
-      
-      const userAttraction = document.querySelector("select[name='attraction']").value
-      const [, selectedAttraction] = userAttraction.split("__")
-      const userEatery = document.querySelector("select[name='eatery']").value
-      const [, selectedEatery] = userEatery.split("__")
-
-      let selectedAttractions = [];
-      userAttraction.forEach((checkbox) => {
-             selectedAttractions.push(parseInt(checkbox.value))
-      });
-
-      let selectedEateries = [];
-      userEatery.forEach((checkbox) => {
-             selectedEateries.push(parseInt(checkbox.value))
-      });
+      // const userAttraction = document.querySelector("select[name='attraction']").value
+      // const [, selectedAttraction] = userAttraction.split("__")
+      // const userEatery = document.querySelector("select[name='eatery']").value
+      // const [, selectedEatery] = userEatery.split("__")
       
       
       const sendToApi = {
           parkId: selectedPark,
-          attractionId: parseInt(selectedAttraction),
-          eateryId: parseInt(selectedEatery)
       }
+
+      // console.log("eat:", AllSelectedEateries, "biz:", AllSelectedAttractions)
 
       if (!sendToApi.parkId || selectedPark === "Select National Park") {
         document.querySelector(".chosenPark").innerHTML = "Please select a park"
       }
-      else if (!sendToApi.attractionId) {
+      else if (!AllSelectedAttractions[0]) {
         document.querySelector(".chosenBizarre").innerHTML = "Please select an attraction"
       }
-      else if (!sendToApi.eateryId) {
+      else if (!AllSelectedEateries[0]) {
         document.querySelector(".chosenEatery").innerHTML = "Please select an eatery"
       }
       else {
         saveItinerary(sendToApi)
         .then(res => res.json())
         .then(data => {
-              for (const attract of selectedAttractions) {
+              for (const attract of AllSelectedAttractions) {
                 const saveAttraction = {
                   postId: data.id,
                   attractionId: attract
                 }
-                saveAttraction(saveAttraction)
+                saveAttractions(saveAttraction)
               }
 
-              for (const eat of selectedEateries) {
+              for (const eat of AllSelectedEateries) {
                 const saveEats = {
                   postId: data.id,
-                  attractionId: eat
+                  eateryId: eat
                 }
-                saveAttraction(saveEats)               
+                saveEateries(saveEats)               
               }
             })
       }
