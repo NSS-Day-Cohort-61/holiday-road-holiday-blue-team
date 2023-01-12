@@ -1,7 +1,7 @@
 import { attractionList } from "./attractions/AttractionProvider.js"
 import { Parks } from "./parks/ParkProvider.js"
 import { Eateries } from "./eateries/EateryProvider.js"
-import { getAttractions, getEateries, getParks, saveItinerary } from "./data/provider.js"
+import { getAttractions, getEateries, getParks, saveAttractions, saveEateries, saveItinerary } from "./data/provider.js"
 import { displayItineraries } from "./data/SavedItinerary.js"
 import { Directions } from "./directions/DirectionProvider.js"
 
@@ -16,6 +16,16 @@ mainContainer.addEventListener("click", clickEvent => {
       const [, selectedAttraction] = userAttraction.split("__")
       const userEatery = document.querySelector("select[name='eatery']").value
       const [, selectedEatery] = userEatery.split("__")
+
+      let selectedAttractions = [];
+      userAttraction.forEach((checkbox) => {
+             selectedAttractions.push(parseInt(checkbox.value))
+      });
+
+      let selectedEateries = [];
+      userEatery.forEach((checkbox) => {
+             selectedEateries.push(parseInt(checkbox.value))
+      });
       
       
       const sendToApi = {
@@ -23,6 +33,7 @@ mainContainer.addEventListener("click", clickEvent => {
           attractionId: parseInt(selectedAttraction),
           eateryId: parseInt(selectedEatery)
       }
+
       if (!sendToApi.parkId || selectedPark === "Select National Park") {
         document.querySelector(".chosenPark").innerHTML = "Please select a park"
       }
@@ -34,6 +45,24 @@ mainContainer.addEventListener("click", clickEvent => {
       }
       else {
         saveItinerary(sendToApi)
+        .then(res => res.json())
+        .then(data => {
+              for (const attract of selectedAttractions) {
+                const saveAttraction = {
+                  postId: data.id,
+                  attractionId: attract
+                }
+                saveAttraction(saveAttraction)
+              }
+
+              for (const eat of selectedEateries) {
+                const saveEats = {
+                  postId: data.id,
+                  attractionId: eat
+                }
+                saveAttraction(saveEats)               
+              }
+            })
       }
       
       

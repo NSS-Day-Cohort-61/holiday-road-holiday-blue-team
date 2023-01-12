@@ -173,3 +173,34 @@ export const fetchDirections = (start, attraction, end) => {
 export const getDirections = () => {
     return [...applicationState.directions]
 }
+
+export const saveAttractions = (input) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(input)
+    }
+    const mainContainer = document.querySelector("#holidayRoad")
+    return fetch(`http://localhost:8088/itineraryAttractions`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            // mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+}
+export const saveEateries = (input) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(input)
+    }
+    const mainContainer = document.querySelector("#holidayRoad")
+    return fetch(`http://localhost:8088/itineraryEateries`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            // mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+}
