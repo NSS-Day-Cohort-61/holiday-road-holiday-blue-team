@@ -133,8 +133,8 @@ export const fetchAttractionCoordinates = (attractionCity, attractionState) => {
         }
     )
 }
-export const fetchEateryCoordinates = (eateryCity, eateryState) => {
-    return fetch(`https://graphhopper.com/api/1/geocode?q=${eateryCity.city}+${eateryState}&locale=us&debug=true&key=${apiKeys.graphhopperKey}`)
+export const fetchEateryCoordinates = (eateryState) => {
+    return fetch(`https://graphhopper.com/api/1/geocode?q=${eateryState.city}+${eateryState.state}&locale=us&debug=true&key=${apiKeys.graphhopperKey}`)
     .then(response => response.json())
     .then(
         (eateryCoordinates) => {
@@ -161,8 +161,8 @@ export const getNashvilleCoordinates = () => {
     return [...applicationState.nashvilleCoordinates]
 }
 
-export const fetchDirections = (start, attraction, end) => {
-    return fetch(`https://graphhopper.com/api/1/route?point=${start.latitude},${start.longitude}&point=${attraction.latitude},${attraction.longitude}&point=${end.latitude},${end.longitude}&vehicle=car&locale=us&instructions=true&calc_points=true&key=${apiKeys.graphhopperKey}`)
+export const fetchDirections = (start, attraction, eatery, end) => {
+    return fetch(`https://graphhopper.com/api/1/route?point=${start.latitude},${start.longitude}&point=${attraction.latitude},${attraction.longitude}&point=${eatery.latitude},${eatery.longitude}&point=${end.latitude},${end.longitude}&vehicle=car&locale=us&instructions=true&calc_points=true&key=${apiKeys.graphhopperKey}`)
     .then(response => response.json())
     .then(
         (startToEnd) => {
