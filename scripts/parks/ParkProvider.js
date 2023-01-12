@@ -1,4 +1,4 @@
-import { fetchWeather, getParks, getWeather } from "../data/provider.js";
+import { fetchWeather, getParks, getWeather, getEvents } from "../data/provider.js";
 
 
 export const Parks = () => {
@@ -22,7 +22,7 @@ document.addEventListener(
                  ${park.fullName} 
                  <br> ${park.addresses[0].city}, ${park.addresses[0].stateCode}
                  <br>
-                 <button style="width:100px" class="parkDetailsButton__${park.id}">Details</button>
+                 <button style="width:100px" class="parkDetailsButton__${park.id}">Details</button><button style="width:100px" id="parkEventButton--${park.fullName}">Events</button>
                  `
                  // reset html
                  document.querySelector(".detailsDisplay").innerHTML = ""
@@ -113,3 +113,26 @@ document.addEventListener(
     }
     )   
 
+document.addEventListener(
+    "click",
+    (clickEvent) => {
+        const itemClicked = clickEvent.target
+        if (itemClicked.id.startsWith("parkEventButton")) {
+            const [, parkFullName] = itemClicked.id.split("--")
+            const events = getEvents()
+          
+            for (const event of events) {
+                if (event.parkfullname === parkFullName) {
+                    const eventInfo = `Title: ${event.title}
+Start Date: ${event.datestart}
+Times: ${event.timestart} - ${event.timeend}
+Description: ${event.description}
+Fee Info: ${event.feeinfo}`
+                    window.alert(`The following events will take place at ${parkFullName}:
+                                ${eventInfo}`)
+                }
+            }
+        }
+    }
+
+)

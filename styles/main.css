@@ -1,5 +1,8 @@
 @import "searchBar.css";
 
+.logo {
+    height: 100px;
+}
 
 .tagline {
     color: whitesmoke;
@@ -10,12 +13,13 @@
 
 header {
     background-color: #48484A;
-    height: 150px;
-    padding-top: 5%;
+    height: auto;
+    padding: 10px;
     color: whitesmoke;
     font-family: 'PT Sans Narrow', sans-serif;
     font-size: 75px;
     justify-content: center;
+    align-items: center;
     display: flex;
     flex-direction: row;
 }
@@ -28,6 +32,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  border: 10px solid #48484A;
   
 }
 
@@ -43,14 +48,6 @@ body {
     
 }
 
-.dropdownBoxes{
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    border: 2px solid #48484A;
-    height: 80px;
-}
 
 .mainContent{
     display: flex;

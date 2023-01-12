@@ -6,11 +6,12 @@ const applicationState = {
   parks: [],
   attractions: [],
   eateries:[],
-  weather: []
+  weather: [],
+  events: []
 }
 
 export const fetchParks = () => {
-    return fetch (`https://developer.nps.gov/api/v1/parks?api_key=${apiKeys.npsKey}`)
+    return fetch (`https://developer.nps.gov/api/v1/parks?api_key=${apiKeys.npsKey}&limit=470`)
     .then(response => response.json())
     .then(
         (servicePosts) => {
@@ -119,4 +120,19 @@ export const fetchItinerary = () => {
 
 export const getItineraries = () => {
     return applicationState.itineraries.map(it => ({...it}))
+}
+
+export const fetchEvents = () => {
+    return fetch (`https://developer.nps.gov/api/v1/events?api_key=${apiKeys.npsKey}&pageSize=600`)
+    .then(response => response.json())
+    .then(
+        (servicePosts) => {
+          
+            applicationState.events = servicePosts
+        }
+        )
+}
+
+export const getEvents = () => {
+    return applicationState.events.data.map(event => ({...event}))
 }
