@@ -161,8 +161,8 @@ export const getNashvilleCoordinates = () => {
     return [...applicationState.nashvilleCoordinates]
 }
 
-export const fetchDirections = (start, end) => {
-    return fetch(`https://graphhopper.com/api/1/route?point=${start.latitude},${start.longitude}&point=${end.latitude},${end.longitude}&vehicle=car&locale=us&instructions=true&calc_points=true&key=${apiKeys.graphhopperKey}`)
+export const fetchDirections = (start, attraction, end) => {
+    return fetch(`https://graphhopper.com/api/1/route?point=${start.latitude},${start.longitude}&point=${attraction.latitude},${attraction.longitude}&point=${end.latitude},${end.longitude}&vehicle=car&locale=us&instructions=true&calc_points=true&key=${apiKeys.graphhopperKey}`)
     .then(response => response.json())
     .then(
         (startToEnd) => {
