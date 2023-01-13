@@ -8,8 +8,12 @@ import { Directions } from "./directions/DirectionProvider.js"
 const mainContainer = document.querySelector("#holidayRoad")
 
 mainContainer.addEventListener("click", clickEvent => {
+  const attractions = getAttractions()
+  const eateries = getEateries()
+
   if (clickEvent.target.className === "saveButton") {
-      const selectedPark = document.querySelector("select[class='park']").value
+      const selectedPark = document.querySelector(".parkParkName").innerHTML
+      const selectedParkId = document.querySelector(".parkParkName").id
 
       // const userAttraction = document.querySelector("select[name='attraction']").value
       // const [, selectedAttraction] = userAttraction.split("__")
@@ -18,7 +22,8 @@ mainContainer.addEventListener("click", clickEvent => {
       
       
       const sendToApi = {
-          parkId: selectedPark,
+          parkId: selectedParkId,
+          parkName: selectedPark
       }
 
       // console.log("eat:", AllSelectedEateries, "biz:", AllSelectedAttractions)
@@ -37,21 +42,27 @@ mainContainer.addEventListener("click", clickEvent => {
         .then(res => res.json())
         .then(data => {
               for (const attract of AllSelectedAttractions) {
+                for (const biz of attractions){
+                  if (biz.id === attract){
                 const saveAttraction = {
                   postId: data.id,
-                  attractionId: attract
+                  attractionId: attract,
+                  attractionName: biz.name
                 }
                 saveAttractions(saveAttraction)
-              }
+              }}}
 
               for (const eat of AllSelectedEateries) {
+                for(const alleats of eateries){
+                  if( alleats.id === eat){
                 const saveEats = {
                   postId: data.id,
-                  eateryId: eat
+                  eateryId: eat,
+                  eateryName: alleats.businessName
                 }
                 saveEateries(saveEats)               
-              }
-            })
+              }}
+            }})
       }
       
       

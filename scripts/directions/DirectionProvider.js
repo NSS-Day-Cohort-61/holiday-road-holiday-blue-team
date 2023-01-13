@@ -44,7 +44,7 @@ document.addEventListener("click", clickEvent => {
             for (const iA of itineraryAttractions){
                 if (iA.postId === itinerary.id){
             for (const attraction of attractions) {
-                if (iA.attractionId === attraction.id) {
+                if (iA.attractionId === attraction.id && attraction.state !== "HI") {
                     const attractionFullState = stateAbbrToName(attraction.state)
                     fetchAttractionCoordinates(attraction, attractionFullState)
                     .then(() => {
@@ -72,7 +72,7 @@ document.addEventListener("click", clickEvent => {
                     .then(() => htmlDirections())
 
                                 
-                }}
+                }} 
             }}
                     
         }
@@ -81,7 +81,7 @@ document.addEventListener("click", clickEvent => {
             const htmlDirections = () => {
                 const directions = getDirections()
                 let html = "<h2>Directions</h2>"
-                let htmlInfo = "<h2>Info</h2>"
+                let htmlInfo = ""
                 directions.map(direction => {
                     htmlInfo += `<div>Total Distance: ${(direction.distance*0.000621371192).toFixed(2)} Miles</div>`
                     htmlInfo += `<div>Total Time: ${(direction.time/3600000).toFixed(2)} Hours</div>`                
@@ -107,8 +107,8 @@ document.addEventListener("click", clickEvent => {
                     }).join("")
                     html += "</ol>"     
                     html += "</div>"
-                    html += "</div>"
-                    html += `<div class="info"></div>`
+                    html += " </div>"
+                    html += `<h2>Info</h2><div class="info"></div>`
                 })
                     
                 document.querySelector(".routeDirections").innerHTML = html

@@ -19,8 +19,8 @@ document.addEventListener(
             if (event.target.value === park.id) {
 
                 document.querySelector(".chosenPark").innerHTML = `
-                 ${park.fullName} 
-                 <br> ${park.addresses[0].city}, ${park.addresses[0].stateCode}
+                <div id="${park.id}" class="parkParkName">${park.fullName}</div>  
+                 ${park.addresses[0].city}, ${park.addresses[0].stateCode}
                  <br>
                  <div class="parkButtons">
                  <button style="width:100px" class="parkDetailsButton__${park.id}">Details</button>   <button style="width:100px" id="parkEventButton--${park.fullName}">Events</button>
@@ -57,8 +57,8 @@ document.addEventListener(
             if (event.target.id === `search-park-${park.id}`) {
 
                 document.querySelector(".chosenPark").innerHTML = `
-                 ${park.fullName} 
-                 <br> ${park.addresses[0].city}, ${park.addresses[0].stateCode}
+                <div id="${park.id}" class="parkParkName">${park.fullName}</div> 
+                 ${park.addresses[0].city}, ${park.addresses[0].stateCode}
                  <br>
                  <button style="width:100px" class="parkDetailsButton__${park.id}">Details</button>
                  `
