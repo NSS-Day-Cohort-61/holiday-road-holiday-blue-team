@@ -18,8 +18,8 @@ document.addEventListener("click", clickEvent => {
             const itineraryAttractions = getItineraryAttractions()
             let startingCoordinates = {}
             let parkCoordinates = {}
-            let attractionCoordinates = {}
-            let eateryCoordinates = {}
+            let attractionCoordinates = ""
+            let eateryCoordinates = ""
             let eateryFullState = {}
             const nashCoordinates = () => {
                 const cords = getNashvilleCoordinates()
@@ -51,8 +51,8 @@ document.addEventListener("click", clickEvent => {
                         const attractionLocations = getAttractionCoordinates()
                         attractionLocations.map(attractionLocation => {
                             if (attractionLocation.osm_value === "city" || attractionLocation.osm_value === "town" || attractionLocation.osm_value === "village") {
-                                attractionCoordinates.latitude = attractionLocation.point.lat
-                                attractionCoordinates.longitude = attractionLocation.point.lng
+                                attractionCoordinates += `&point=${attractionLocation.point.lat},`
+                                attractionCoordinates += `${attractionLocation.point.lng}`
                             }
                         })
                     })
@@ -61,8 +61,8 @@ document.addEventListener("click", clickEvent => {
                         const eateryLocations = getEateryCoordinates()
                         eateryLocations.map(eateryLocation => {
                             if (eateryLocation.osm_value === "city" || eateryLocation.osm_value === "town" || eateryLocation.osm_value === "village") {
-                                eateryCoordinates.latitude = eateryLocation.point.lat
-                                eateryCoordinates.longitude = eateryLocation.point.lng
+                                eateryCoordinates += `&point=${eateryLocation.point.lat},`
+                                eateryCoordinates += `${eateryLocation.point.lng}`
                             }
                         })
                     })
