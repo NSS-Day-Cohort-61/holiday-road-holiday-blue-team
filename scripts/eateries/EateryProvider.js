@@ -49,9 +49,11 @@ document.addEventListener("click", changeEvent => {
     eateries.map(eatery => {
         if (changeEvent.target.id === `search-eat-${eatery.id}`) {
             AllSelectedEateries.push(eatery.id)
+            if( document.querySelector(".chosenEatery").innerHTML === "Selected Eatery"){
+            document.querySelector(".chosenEatery").innerHTML = ""}
+
             document.querySelector(".chosenEatery").innerHTML += `<div class="bigEats" id="bigEats-${eatery.id}">${eatery.businessName}
-           if( document.querySelector(".chosenBizarre").innerHTML === " Selected  Attraction "){
-            document.querySelector(".chosenBizarre").innerHTML = ""} <br> ${eatery.city}, ${eatery.state}
+            <br> ${eatery.city}, ${eatery.state}
             <br><button style="width:100px" class="eateryDetails-${eatery.id}">Details</button>
             <button style="width:100px" class="eateryRemove-${eatery.id}">Remove</button>
             </div>
@@ -91,9 +93,12 @@ document.addEventListener("click", clickEvent => {
 
             
             document.getElementById(`bigEats-${eatery.id}`).remove()
+
+            if (document.querySelector(".bigEats").innerHTML === ""){
+                document.querySelector(".bigEats").innerHTML = "Selected Eatery"
+            }
             
-if( document.querySelector(".chosenBizarre").innerHTML === " Selected  Attraction "){
-            document.querySelector(".chosenBizarre").innerHTML = ""}            if (document.querySelector(".detailsDisplay").innerHTML === `<div id="eat-${eatery.id}">${eatery.description}</div>`){
+          if (document.querySelector(".detailsDisplay").innerHTML === `<div id="eat-${eatery.id}">${eatery.description}</div>`){
                 document.querySelector(".detailsDisplay").innerHTML = ''
                 document.getElementById(`displayDisplay`).style.backgroundColor = '#d3eaf2'
                 document.getElementById(`bigEats-${eatery.id}`).style.backgroundColor = '#d3eaf2'
