@@ -9,6 +9,11 @@
       "parkId": "96DC2172-0201-4ABB-BD77-2687F4726C9B",
       "parkName": "Capitol Hill Parks",
       "id": 10
+    },
+    {
+      "parkId": "55ABA58B-B19E-4851-BDE1-1C0712B2BE2C",
+      "parkName": "Cane River Creole National Historical Park",
+      "id": 11
     }
   ],
   "itineraryAttractions": [
@@ -29,6 +34,12 @@
       "attractionId": 44,
       "attractionName": "Wax Last Supper",
       "id": 13
+    },
+    {
+      "postId": 11,
+      "attractionId": 11,
+      "attractionName": "White House Replica",
+      "id": 14
     }
   ],
   "itineraryEateries": [
@@ -43,6 +54,12 @@
       "eateryId": 46,
       "eateryName": "Ruth's Diner",
       "id": 10
+    },
+    {
+      "postId": 11,
+      "eateryId": 9,
+      "eateryName": "Deer Park Tavern",
+      "id": 11
     }
   ]
 }
