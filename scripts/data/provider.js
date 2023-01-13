@@ -11,6 +11,8 @@ const applicationState = {
   eateryCoordinates: [],
   nashvilleCoordinates: [],
   directions: [],
+  itineraryAttractions:[],
+  itineraryEateries:[],
   events: []
 }
 
@@ -65,7 +67,7 @@ export const fetchWeather = (parkObj) => {
     .then(res => res.json())
     .then(
         (data) => {
-            applicationState.weather = data
+        
                 const fiveDayIndex = [data.list[1],data.list[9], data.list[17],data.list[25], data.list[33]]
                 for (const forecast of fiveDayIndex){
                     document.querySelector(".trueWeatherDisplay").innerHTML += `
@@ -105,12 +107,11 @@ export const saveItinerary = (input) => {
         },
         body: JSON.stringify(input)
     }
-    const mainContainer = document.querySelector("#holidayRoad")
     return fetch(`http://localhost:8088/itineraries`, fetchOptions)
-        .then(response => response.json())
-        .then(() => {
-            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
-        })
+        // .then(response => response.json())
+        // .then((data) => {
+        //     console.log(data)
+        // })
 }
 export const fetchItinerary = () => {
     return fetch(`http://localhost:8088/itineraries`)
@@ -174,6 +175,69 @@ export const fetchDirections = (start, attraction, eatery, end) => {
 export const getDirections = () => {
     return [...applicationState.directions]
 }
+
+export const saveAttractions = (input) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(input)
+    }
+    const mainContainer = document.querySelector("#holidayRoad")
+    return fetch(`http://localhost:8088/itineraryAttractions`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            // mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+}
+
+export const fetchItineraryAttractions = () => {
+    return fetch (`http://localhost:8088/itineraryAttractions`)
+    .then(response => response.json())
+    .then(
+        (servicePosts) => {
+          
+            applicationState.itineraryAttractions = servicePosts
+        }
+        )
+}
+
+export const getItineraryAttractions = () => {
+    return applicationState.itineraryAttractions.map(iA => ({...iA}))
+}
+
+export const saveEateries = (input) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(input)
+    }
+    const mainContainer = document.querySelector("#holidayRoad")
+    return fetch(`http://localhost:8088/itineraryEateries`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            // mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+}
+
+export const fetchItineraryEateries = () => {
+    return fetch (`http://localhost:8088/itineraryEateries`)
+    .then(response => response.json())
+    .then(
+        (servicePosts) => {
+          
+            applicationState.itineraryEateries = servicePosts
+        }
+        )
+}
+
+export const getItineraryEateries = () => {
+    return applicationState.itineraryEateries.map(iE => ({...iE}))
+}
+
 
 export const fetchEvents = () => {
     return fetch (`https://developer.nps.gov/api/v1/events?&pageSize=50&api_key=${apiKeys.npsKey}`)
