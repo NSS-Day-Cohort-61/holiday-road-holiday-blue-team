@@ -44,7 +44,7 @@ document.addEventListener("click", clickEvent => {
             for (const iA of itineraryAttractions){
                 if (iA.postId === itinerary.id){
             for (const attraction of attractions) {
-                if (iA.attractionId === attraction.id) {
+                if (iA.attractionId === attraction.id && attraction.state !== "HI") {
                     const attractionFullState = stateAbbrToName(attraction.state)
                     fetchAttractionCoordinates(attraction, attractionFullState)
                     .then(() => {
@@ -72,7 +72,7 @@ document.addEventListener("click", clickEvent => {
                     .then(() => htmlDirections())
 
                                 
-                }}
+                }} 
             }}
                     
         }

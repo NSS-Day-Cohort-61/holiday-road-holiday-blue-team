@@ -26,8 +26,11 @@ document.addEventListener("change", (event) => {
     biz.map(
         attract => {
             if (event.target.value === `biz__${attract.id}` && !bizchildren.namedItem(`biz__${attract.id}`)) {
+                
             AllSelectedAttractions.push(attract.id)
-            
+            if( document.querySelector(".chosenBizarre").innerHTML === " Selected  Attraction "){
+            document.querySelector(".chosenBizarre").innerHTML = ""}
+
                 document.querySelector(".chosenBizarre").innerHTML += `<div id='biz__${attract.id}'>${attract.name} 
                 <br> ${attract.city}, ${attract.state} 
                 <div> <button style="width:100px" class="bizDetails__${attract.id}">Details</button> <button style="width:100px" class="removeBiz__${attract.id}">Remove</button> </div></div>
