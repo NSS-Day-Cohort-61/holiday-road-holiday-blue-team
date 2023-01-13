@@ -66,7 +66,7 @@ export const displayItineraries = () => {
                                 }).join("")
                         }
                         
-                    <button style="width:100px" id="directions-{item.id}" class="directionsButton">Get Directions</button>   
+                    <button style="width:100px" id="directions-${item.id}" class="directionsButton">Get Directions</button>   
                         
                     </div>
                     `
