@@ -80,8 +80,8 @@ document.addEventListener("click", clickEvent => {
 
             const htmlDirections = () => {
                 const directions = getDirections()
-                let html = "<h3>Directions</h3>"
-                let htmlInfo = "<h4>Info</h4>"
+                let html = "<h2>Directions</h2>"
+                let htmlInfo = "<h2>Info</h2>"
                 directions.map(direction => {
                     htmlInfo += `<div>Total Distance: ${(direction.distance*0.000621371192).toFixed(2)} Miles</div>`
                     htmlInfo += `<div>Total Time: ${(direction.time/3600000).toFixed(2)} Hours</div>`                

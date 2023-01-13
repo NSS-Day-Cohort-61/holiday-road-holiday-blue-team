@@ -101,13 +101,13 @@ document.addEventListener(
                 let eatchildren = document.querySelector(".chosenEatery").children;
                 
                 for (const eatchild of eatchildren) {
-                    eatchild.style.backgroundColor = '#a8d5e5'
+                    eatchild.style.backgroundColor = '#d3eaf2'
                 }
 
                 let bizchildren = document.querySelector(".chosenBizarre").children;
                 
                 for (const bizchild of bizchildren) {
-                    bizchild.style.backgroundColor = '#a8d5e5'
+                    bizchild.style.backgroundColor = '#d3eaf2'
                 }
             }
         }
@@ -145,19 +145,4 @@ Fee Info: ${parkEvent.feeinfo}`)
             
 )
         
-        //             for (const event of events) {
-        //                 if (event.parkfullname === parkFullName) {
-        //                     const eventInfo = `
-        // Title: ${event.title}
-        // Start Date: ${event.datestart}
-        // Times: ${event.timestart} - ${event.timeend}
-        // Description: ${event.description}
-        // Fee Info: ${event.feeinfo}`
-        //                     window.alert(`The following events will take place at ${parkFullName}:
-        //                                 ${eventInfo}`)
-                            
-        //                 //} else {
-        //                     //document.querySelector(".parksButtons").innerHTML = `<button style="width:100px" class="parkDetailsButton__${park.id}">Details</button>`
-        //                 }
-        //                 
-        //             }
+    
