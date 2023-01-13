@@ -12,11 +12,12 @@ const applicationState = {
   nashvilleCoordinates: [],
   directions: [],
   itineraryAttractions:[],
-  itineraryEateries:[]
+  itineraryEateries:[],
+  events: []
 }
 
 export const fetchParks = () => {
-    return fetch (`https://developer.nps.gov/api/v1/parks?api_key=${apiKeys.npsKey}`)
+    return fetch (`https://developer.nps.gov/api/v1/parks?api_key=${apiKeys.npsKey}&limit=470`)
     .then(response => response.json())
     .then(
         (servicePosts) => {
@@ -235,4 +236,20 @@ export const fetchItineraryEateries = () => {
 
 export const getItineraryEateries = () => {
     return applicationState.itineraryEateries.map(iE => ({...iE}))
+}
+
+
+export const fetchEvents = () => {
+    return fetch (`https://developer.nps.gov/api/v1/events?&pageSize=50&api_key=${apiKeys.npsKey}`)
+    .then(response => response.json())
+    .then(
+        (servicePosts) => {
+          
+            applicationState.events = servicePosts
+        }
+        )
+}
+
+export const getEvents = () => {
+    return applicationState.events.data.map(event => ({...event}))
 }
