@@ -82,11 +82,11 @@ body {
 .weatherDisplay {
     border: 2px solid #071e26;
     background-color:  whitesmoke;
-    box-shadow: 3px 3px 5px darkgray ;
+    box-shadow: 3px 3px 5px darkgray;
     color: black;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     padding: 0px 20px;
     margin-right: 10px;
 }
@@ -129,10 +129,10 @@ h3 {
     border: 2px solid #071e26;
     background-color: whitesmoke;
     color: black;
-    box-shadow: 3px 3px 5px darkgray ;
+    box-shadow: 3px 3px 5px darkgray;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     padding: 0px 20px;
 }
 
@@ -152,7 +152,7 @@ h3 {
 .chosen {
     border: 2px solid #071e26;
     margin-bottom: 10px;
-    padding: 0px 20px;
+    padding-bottom: 5px;
     text-align: center;
     line-height: 170%;
     background-color: #d3eaf2;

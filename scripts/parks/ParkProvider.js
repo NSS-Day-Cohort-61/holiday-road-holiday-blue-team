@@ -101,13 +101,13 @@ document.addEventListener(
                 let eatchildren = document.querySelector(".chosenEatery").children;
                 
                 for (const eatchild of eatchildren) {
-                    eatchild.style.backgroundColor = '#a8d5e5'
+                    eatchild.style.backgroundColor = '#d3eaf2'
                 }
 
                 let bizchildren = document.querySelector(".chosenBizarre").children;
                 
                 for (const bizchild of bizchildren) {
-                    bizchild.style.backgroundColor = '#a8d5e5'
+                    bizchild.style.backgroundColor = '#d3eaf2'
                 }
             }
         }
