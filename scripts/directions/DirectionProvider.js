@@ -12,9 +12,12 @@ document.addEventListener("click", clickEvent => {
         if (clickEvent.target.id === `directions-${itinerary.id}`) {
             const parks = getParks()
             const attractions = getAttractions()
+            const eateries = getEateries()
             let startingCoordinates = {}
             let parkCoordinates = {}
             let attractionCoordinates = {}
+            let eateryCoordinates = {}
+            let eateryFullState = {}
             const nashCoordinates = () => {
                 const cords = getNashvilleCoordinates()
                 startingCoordinates.latitude = cords[0].point.lat
@@ -26,68 +29,90 @@ document.addEventListener("click", clickEvent => {
                     parkCoordinates.longitude = park.longitude
                 }
             }
-            
+            for (const eatery of eateries) {
+                if (itinerary.eateryId === eatery.id) {
+                    eateryFullState.city = eatery.city
+                    eateryFullState.state = stateAbbrToName(eatery.state)
+                }
+            }
             for (const attraction of attractions) {
                 if (itinerary.attractionId === attraction.id) {
                     const attractionFullState = stateAbbrToName(attraction.state)
                     fetchAttractionCoordinates(attraction, attractionFullState)
                     .then(() => {
-                    const attractionLocations = getAttractionCoordinates()
-                    attractionLocations.map(attractionLocation => {
-                        if (attractionLocation.osm_value === "city"|| attractionLocation.osm_value === "town" || attractionLocation.osm_value === "village") {
-                            attractionCoordinates.latitude = attractionLocation.point.lat
-                            attractionCoordinates.longitude = attractionLocation.point.lng
-                        }
+                        const attractionLocations = getAttractionCoordinates()
+                        attractionLocations.map(attractionLocation => {
+                            if (attractionLocation.osm_value === "city" || attractionLocation.osm_value === "town" || attractionLocation.osm_value === "village") {
+                                attractionCoordinates.latitude = attractionLocation.point.lat
+                                attractionCoordinates.longitude = attractionLocation.point.lng
+                            }
+                        })
                     })
+                    .then(() => fetchEateryCoordinates(eateryFullState))
+                    .then(() => {
+                        const eateryLocations = getEateryCoordinates()
+                        eateryLocations.map(eateryLocation => {
+                            if (eateryLocation.osm_value === "city" || eateryLocation.osm_value === "town" || eateryLocation.osm_value === "village") {
+                                eateryCoordinates.latitude = eateryLocation.point.lat
+                                eateryCoordinates.longitude = eateryLocation.point.lng
+                            }
+                        })
                     })
                     .then(() => fetchNashvilleCoordinates())
                     .then(() => nashCoordinates())
-                    .then(() => fetchDirections(startingCoordinates, attractionCoordinates, parkCoordinates))
+                    .then(() => fetchDirections(startingCoordinates, attractionCoordinates, eateryCoordinates, parkCoordinates))
                     .then(() => htmlDirections())
+
+                                
                 }
             }
+                    
+        }
+    }
+
             const htmlDirections = () => {
                 const directions = getDirections()
-                let html = "<ol>"
-                    directions.map(direction => {
-                        direction.instructions.map(instruction => {
-                            if (Math.abs(instruction.distance*0.000621371192) === 0 ) {
-                                html += `<li>${instruction.text}</li>` 
-                            }
-                            else if (Math.abs(instruction.distance*0.000621371192) <= 0.25) {
-                                html += `<li>${instruction.text} for ${Math.round(instruction.distance*3.2808)} feet</li>` 
-                            }
-                            else { 
-                                html += `<li>${instruction.text} for ${Math.abs(instruction.distance*0.000621371192).toFixed(2)} miles</li>`
-                            }    
-                        }).join("")
-                    })
+                let html = "<h3>Directions</h3>"
+                let htmlInfo = "<h4>Info</h4>"
+                directions.map(direction => {
+                    htmlInfo += `<div>Total Distance: ${(direction.distance*0.000621371192).toFixed(2)} Miles</div>`
+                    htmlInfo += `<div>Total Time: ${(direction.time/3600000).toFixed(2)} Hours</div>`                
                     
-                html += "</ol>"     
+                    html += `<div class="instructions">`
+                    html += `<div class="start">`
+                    html += "<ol>"
+                    direction.instructions.map(instruction => {                        
+                        if (Math.abs(instruction.distance*0.000621371192) === 0) { ///assigns class to waypoint 1, waypoint 2, and national park
+                            html += `</ol>
+                                    </div>
+                                    <div class="points">
+                                    <ol>
+                                    <li class="wayPoints">${instruction.text}</li>
+                                    `
+                        }
+                        else if (Math.abs(instruction.distance*0.000621371192) <= 0.25) {
+                            html += `<li>${instruction.text} for ${Math.round(instruction.distance*3.2808)} feet</li>` 
+                        }
+                        else { 
+                            html += `<li>${instruction.text} for ${Math.abs(instruction.distance*0.000621371192).toFixed(2)} miles</li>`
+                        }
+                    }).join("")
+                    html += "</ol>"     
+                    html += "</div>"
+                    html += "</div>"
+                    html += `<div class="info"></div>`
+                })
+                    
                 document.querySelector(".routeDirections").innerHTML = html
+                document.querySelector(".info").innerHTML = htmlInfo
             }
-    }}
+    
 })
 
-//need to define a function that feeds into grasshopper and displays directions
+
 export const Directions = () => {
-    const parks = getParks()
-    const itineraries = getItineraries()
 
-    let html = "<ul>"
+    let html = "<div>Please select an itinerary to display directions</div>"
     
-    itineraries.map(itinerary => {
-        parks.map(park => {
-                if (park.id === itinerary.parkId) {
-                    html += `
-                    <li>
-                    ${park.fullName}
-                    </li>
-                    `
-                }
-        })
-    })
-
-    html += "</ul>"
     return html
 }

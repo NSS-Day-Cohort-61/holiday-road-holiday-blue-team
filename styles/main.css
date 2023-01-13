@@ -182,3 +182,7 @@ h2 {
     justify-content: space-between;
     
 }
+
+.instructions {
+    display: flex;
+}
