@@ -1,9 +1,17 @@
 import { getEateries } from "../data/provider.js"
 
+export const AllSelectedEateries = []
+
 document.addEventListener("change", changeEvent => {
     const eateries = getEateries()
+    let eatchildren = document.querySelector(".chosenEatery").children;
+    
     eateries.map(eatery => {
-        if (changeEvent.target.value === `eatery__${eatery.id}`) {
+        if (changeEvent.target.value === `eatery__${eatery.id}` && !eatchildren.namedItem(`bigEats-${eatery.id}`)) {
+
+            AllSelectedEateries.push(eatery.id)
+           
+
             document.querySelector(".chosenEatery").innerHTML += `<div class="bigEats" id="bigEats-${eatery.id}">${eatery.businessName}
             <br> ${eatery.city}, ${eatery.state}
             <br><button style="width:100px" class="eateryDetails-${eatery.id}">Details</button>
@@ -32,11 +40,14 @@ document.addEventListener("change", changeEvent => {
         }
     }).join("")
 })
-
+// 
 document.addEventListener("click", changeEvent => {
     const eateries = getEateries()
+    let eatchildren = document.querySelector(".chosenEatery").children;
+
     eateries.map(eatery => {
         if (changeEvent.target.id === `search-eat-${eatery.id}`) {
+            AllSelectedEateries.push(eatery.id)
             document.querySelector(".chosenEatery").innerHTML += `<div class="bigEats" id="bigEats-${eatery.id}">${eatery.businessName}
             <br> ${eatery.city}, ${eatery.state}
             <br><button style="width:100px" class="eateryDetails-${eatery.id}">Details</button>
@@ -73,6 +84,9 @@ document.addEventListener("click", clickEvent => {
     eateries.map(eatery => {
         if (clickEvent.target.className === `eateryRemove-${eatery.id}`) {
             
+            AllSelectedEateries.splice(AllSelectedEateries.indexOf(eatery.id), 1)
+             
+
             
             document.getElementById(`bigEats-${eatery.id}`).remove()
             

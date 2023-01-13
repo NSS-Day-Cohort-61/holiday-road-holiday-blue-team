@@ -1,5 +1,6 @@
 import { getAttractions } from "../data/provider.js";
 
+export const AllSelectedAttractions = []
 
 export const attractionList = () => {
 
@@ -21,9 +22,12 @@ const attractions = getAttractions()
 //selected
 document.addEventListener("change", (event) => {
     const biz = getAttractions()
+    let bizchildren = document.querySelector(".chosenBizarre").children;
     biz.map(
         attract => {
-            if (event.target.value === `biz__${attract.id}`) {
+            if (event.target.value === `biz__${attract.id}` && !bizchildren.namedItem(`biz__${attract.id}`)) {
+            AllSelectedAttractions.push(attract.id)
+            
                 document.querySelector(".chosenBizarre").innerHTML += `<div id='biz__${attract.id}'>${attract.name} 
                 <br> ${attract.city}, ${attract.state} 
                 <div> <button style="width:100px" class="bizDetails__${attract.id}">Details</button> <button style="width:100px" class="removeBiz__${attract.id}">Remove</button> </div></div>
@@ -54,9 +58,12 @@ document.addEventListener("change", (event) => {
 
 document.addEventListener("click", (event) => {
     const biz = getAttractions()
+    let bizchildren = document.querySelector(".chosenBizarre").children;
     biz.map(
         attract => {
-            if (event.target.id === `search-biz-${attract.id}`) {
+            if (event.target.id === `search-biz-${attract.id}` && !bizchildren.namedItem(`biz__${attract.id}`)) {
+            AllSelectedAttractions.push(attract.id)
+            
                 document.querySelector(".chosenBizarre").innerHTML += `<div id='biz__${attract.id}'>${attract.name} 
                 <br> ${attract.city}, ${attract.state} 
                 <div> <button style="width:100px" class="bizDetails__${attract.id}">Details</button> <button style="width:100px" class="removeBiz__${attract.id}">Remove</button> </div></div>
@@ -91,6 +98,7 @@ document.addEventListener("click", (event) => {
     biz.map(
         attract => {
             if (event.target.className === `bizDetails__${attract.id}`) {
+            
                 document.querySelector(".detailsDisplay").innerHTML = `<div class='bizDetails__${attract.id}'>${attract.description}</div>`
                 
                 document.getElementById("eatEat").style.backgroundColor = '#d3eaf2'
@@ -123,6 +131,10 @@ document.addEventListener("click", (event) => {
     biz.map(
         attract => {
             if (event.target.className === `removeBiz__${attract.id}`) {
+                
+              AllSelectedAttractions.splice(AllSelectedAttractions.indexOf(attract.id), 1)
+              
+
                 document.querySelector(`#biz__${attract.id}`).innerHTML = ""
                 document.querySelector(`.bizDetails__${attract.id}`).innerHTML = ""
                 document.getElementById("displayDisplay").style.backgroundColor = '#d3eaf2'
