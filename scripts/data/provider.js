@@ -176,7 +176,7 @@ export const getDirections = () => {
 }
 
 export const fetchEvents = () => {
-    return fetch (`https://developer.nps.gov/api/v1/events?api_key=${apiKeys.npsKey}&pageSize=600`)
+    return fetch (`https://developer.nps.gov/api/v1/events?&pageSize=50&api_key=${apiKeys.npsKey}`)
     .then(response => response.json())
     .then(
         (servicePosts) => {

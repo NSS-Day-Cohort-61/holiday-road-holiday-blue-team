@@ -22,7 +22,9 @@ document.addEventListener(
                  ${park.fullName} 
                  <br> ${park.addresses[0].city}, ${park.addresses[0].stateCode}
                  <br>
-                 <button style="width:100px" class="parkDetailsButton__${park.id}">Details</button><button style="width:100px" id="parkEventButton--${park.fullName}">Events</button>
+                 <div class="parkButtons">
+                 <button style="width:100px" class="parkDetailsButton__${park.id}">Details</button>   <button style="width:100px" id="parkEventButton--${park.fullName}">Events</button>
+                 </div>
                  `
                  // reset html
                  document.querySelector(".detailsDisplay").innerHTML = ""
@@ -32,10 +34,10 @@ document.addEventListener(
                 //document.getElementById("optionOption").style.backgroundImage =  `url(${park.images[0].url})`
 
 
-                document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-                document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-                document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("bizBiz").style.backgroundColor = '#d3eaf2'
+                document.getElementById("eatEat").style.backgroundColor = '#d3eaf2'
+                document.getElementById("parkPark").style.backgroundColor = '#d3eaf2'
+                document.getElementById("displayDisplay").style.backgroundColor = '#d3eaf2'
                 
 
 
@@ -68,10 +70,10 @@ document.addEventListener(
                 //document.getElementById("optionOption").style.backgroundImage =  `url(${park.images[0].url})`
 
 
-                document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-                document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-                document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
+                document.getElementById("bizBiz").style.backgroundColor = '#d3eaf2'
+                document.getElementById("eatEat").style.backgroundColor = '#d3eaf2'
+                document.getElementById("parkPark").style.backgroundColor = '#d3eaf2'
+                document.getElementById("displayDisplay").style.backgroundColor = '#d3eaf2'
                 
 
 
@@ -91,21 +93,21 @@ document.addEventListener(
             if (clickEvent.target.className === `parkDetailsButton__${park.id}`) {
               
                 document.querySelector(".detailsDisplay").innerHTML = `${park.description}`
-                document.getElementById("bizBiz").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-                document.getElementById("eatEat").style.backgroundColor = 'rgba(236, 111, 76, 0.286)'
-                document.getElementById("parkPark").style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
-                document.getElementById("displayDisplay").style.backgroundColor = 'rgba(236, 111, 76, 0.486)'
+                document.getElementById("bizBiz").style.backgroundColor = '#d3eaf2'
+                document.getElementById("eatEat").style.backgroundColor = '#d3eaf2'
+                document.getElementById("parkPark").style.backgroundColor = '#a8d5e5'
+                document.getElementById("displayDisplay").style.backgroundColor = '#a8d5e5'
 
                 let eatchildren = document.querySelector(".chosenEatery").children;
                 
                 for (const eatchild of eatchildren) {
-                    eatchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                    eatchild.style.backgroundColor = '#a8d5e5'
                 }
 
                 let bizchildren = document.querySelector(".chosenBizarre").children;
                 
                 for (const bizchild of bizchildren) {
-                    bizchild.style.backgroundColor = 'rgba(236, 111, 76, 0.0)'
+                    bizchild.style.backgroundColor = '#a8d5e5'
                 }
             }
         }
@@ -121,18 +123,41 @@ document.addEventListener(
             const [, parkFullName] = itemClicked.id.split("--")
             const events = getEvents()
           
-            for (const event of events) {
-                if (event.parkfullname === parkFullName) {
-                    const eventInfo = `Title: ${event.title}
-Start Date: ${event.datestart}
-Times: ${event.timestart} - ${event.timeend}
-Description: ${event.description}
-Fee Info: ${event.feeinfo}`
-                    window.alert(`The following events will take place at ${parkFullName}:
-                                ${eventInfo}`)
-                }
+            const parkEvents = events.filter(event => event.parkfullname === parkFullName)
+
+             
+                if (parkEvents.length === 0) {
+                    window.alert(`No events scheduled at this time.`)
+                } else 
+                    {
+                    for (const parkEvent of parkEvents) {
+                        window.alert(`The following events will take place at ${parkFullName}:
+Title: ${parkEvent.title}
+Start Date: ${parkEvent.datestart}
+Times: ${parkEvent.timestart} - ${parkEvent.timeend}
+Description: ${parkEvent.description.replaceAll(/<p>/g, ``).replace(/<\/p>/g, ``).replace(/<ul>/g,``).replace(/<\/ul>/g, ``).replace(/<li>/g, ``).replace(/<\/li>/g,``).replace(/<strong>/g, ``).replace(/<\/strong>/g, ``).replace(/<br \/>/g,``).replace(/<a href=/g, ``).replace(/<\/a>/g, ``).replace(/target=“_blank”/g, ``).replace(/rel=“noopener noreferrer”>/g)}
+Fee Info: ${parkEvent.feeinfo}`)                                        
+                    }
             }
+        
         }
     }
-
+            
 )
+        
+        //             for (const event of events) {
+        //                 if (event.parkfullname === parkFullName) {
+        //                     const eventInfo = `
+        // Title: ${event.title}
+        // Start Date: ${event.datestart}
+        // Times: ${event.timestart} - ${event.timeend}
+        // Description: ${event.description}
+        // Fee Info: ${event.feeinfo}`
+        //                     window.alert(`The following events will take place at ${parkFullName}:
+        //                                 ${eventInfo}`)
+                            
+        //                 //} else {
+        //                     //document.querySelector(".parksButtons").innerHTML = `<button style="width:100px" class="parkDetailsButton__${park.id}">Details</button>`
+        //                 }
+        //                 
+        //             }
