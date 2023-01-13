@@ -1,4 +1,4 @@
-import { fetchAttractionCoordinates, fetchDirections, fetchEateryCoordinates, fetchNashvilleCoordinates, getAttractionCoordinates, getAttractions, getDirections, getEateries, getEateryCoordinates, getItineraries, getNashvilleCoordinates, getParks } from "../data/provider.js";
+import { fetchAttractionCoordinates, getItineraryAttractions, getItineraryEateries, fetchDirections, fetchEateryCoordinates, fetchNashvilleCoordinates, getAttractionCoordinates, getAttractions, getDirections, getEateries, getEateryCoordinates, getItineraries, getNashvilleCoordinates, getParks } from "../data/provider.js";
 import { stateAbbrToName } from "./DirectionsSupport.js";
 
 //need to define an event listener to get coordinates from directions button from SavedItinerary
@@ -10,41 +10,49 @@ document.addEventListener("click", clickEvent => {
     const itineraries = getItineraries()
     for (const itinerary of itineraries) {
         if (clickEvent.target.id === `directions-${itinerary.id}`) {
+           
             const parks = getParks()
             const attractions = getAttractions()
             const eateries = getEateries()
+            const itineraryEatery = getItineraryEateries()
+            const itineraryAttractions = getItineraryAttractions()
             let startingCoordinates = {}
             let parkCoordinates = {}
-            let attractionCoordinates = {}
-            let eateryCoordinates = {}
+            let attractionCoordinates = ""
+            let eateryCoordinates = ""
             let eateryFullState = {}
             const nashCoordinates = () => {
                 const cords = getNashvilleCoordinates()
                 startingCoordinates.latitude = cords[0].point.lat
                 startingCoordinates.longitude = cords[0].point.lng
             }
+           
             for (const park of parks) {
                 if (itinerary.parkId === park.id) {
                     parkCoordinates.latitude = park.latitude
                     parkCoordinates.longitude = park.longitude
                 }
             }
+            for (const iE of itineraryEatery){
+                if (iE.postId === itinerary.id){
             for (const eatery of eateries) {
-                if (itinerary.eateryId === eatery.id) {
+                if (iE.eateryId === eatery.id) {
                     eateryFullState.city = eatery.city
                     eateryFullState.state = stateAbbrToName(eatery.state)
-                }
-            }
+                }}
+            }}
+            for (const iA of itineraryAttractions){
+                if (iA.postId === itinerary.id){
             for (const attraction of attractions) {
-                if (itinerary.attractionId === attraction.id) {
+                if (iA.attractionId === attraction.id) {
                     const attractionFullState = stateAbbrToName(attraction.state)
                     fetchAttractionCoordinates(attraction, attractionFullState)
                     .then(() => {
                         const attractionLocations = getAttractionCoordinates()
                         attractionLocations.map(attractionLocation => {
                             if (attractionLocation.osm_value === "city" || attractionLocation.osm_value === "town" || attractionLocation.osm_value === "village") {
-                                attractionCoordinates.latitude = attractionLocation.point.lat
-                                attractionCoordinates.longitude = attractionLocation.point.lng
+                                attractionCoordinates += `&point=${attractionLocation.point.lat},`
+                                attractionCoordinates += `${attractionLocation.point.lng}`
                             }
                         })
                     })
@@ -53,8 +61,8 @@ document.addEventListener("click", clickEvent => {
                         const eateryLocations = getEateryCoordinates()
                         eateryLocations.map(eateryLocation => {
                             if (eateryLocation.osm_value === "city" || eateryLocation.osm_value === "town" || eateryLocation.osm_value === "village") {
-                                eateryCoordinates.latitude = eateryLocation.point.lat
-                                eateryCoordinates.longitude = eateryLocation.point.lng
+                                eateryCoordinates += `&point=${eateryLocation.point.lat},`
+                                eateryCoordinates += `${eateryLocation.point.lng}`
                             }
                         })
                     })
@@ -64,8 +72,8 @@ document.addEventListener("click", clickEvent => {
                     .then(() => htmlDirections())
 
                                 
-                }
-            }
+                }}
+            }}
                     
         }
     }
